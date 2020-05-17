@@ -24,6 +24,10 @@ export default class Solicitation extends Model {
     return this;
   }
 
+  static associate(models) {
+    this.belongsTo(models.Avatar, { foreignKey: 'avatar_id', as: 'avatar' });
+  }
+
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }
