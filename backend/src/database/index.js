@@ -2,10 +2,11 @@ import Sequelize from 'sequelize';
 
 import User from '../app/models/User';
 import Solicitation from '../app/models/Solicitation';
+import Avatar from '../app/models/Avatar';
 
 import databaseConfig from '../config/database';
 
-const models = [User, Solicitation];
+const models = [User, Solicitation, Avatar];
 
 class Database {
   constructor() {
@@ -15,10 +16,11 @@ class Database {
   init() {
     this.connection = new Sequelize(databaseConfig);
 
-    models.map((model) => model.init(this.connection));
-    /* .map(
+    models
+      .map((model) => model.init(this.connection))
+      .map(
         (model) => model.associate && model.associate(this.connection.models)
-      ); */
+      );
   }
 }
 
