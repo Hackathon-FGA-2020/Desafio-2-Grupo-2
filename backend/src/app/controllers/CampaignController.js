@@ -3,8 +3,33 @@ import * as Yup from 'yup';
 import Campaign from '../models/Campaign';
 import CampaignFile from '../models/CampaignFile';
 import User from '../models/User';
+import Avatar from '../models/Avatar';
 
 class CampaignController {
+  // Depois faz as verificações e adiciona a imagem
+  async index(req, res) {
+    const campaigns = await Campaign.findAll({
+      where: { active: true },
+      order: ['updated_at'],
+      attributes: ['id', 'name', 'description', 'tags', 'updatedAt'],
+      include: [
+        {
+          model: User,
+          as: 'campaignCreator',
+          attributes: ['id', 'name', 'email'],
+          include: [
+            {
+              model: Avatar,
+              as: 'avatar',
+            },
+          ],
+        },
+      ],
+    });
+
+    return res.json(campaigns);
+  }
+
   async store(req, res) {
     const data = req.body;
     const { userId, file } = req;
@@ -109,6 +134,20 @@ class CampaignController {
     }
 
     return res.status(200).json({ campaign });
+  }
+
+  async delete(req, res) {
+    const campaign = await Campaign.findByPk(req.params.id);
+
+    if (campaign.creator !== req.userId) {
+      return res
+        .status(401)
+        .json({ error: 'You cannot make changes to this campaign' });
+    }
+
+    campaign.active = false;
+    await campaign.save();
+    return res.json(campaign);
   }
 }
 
