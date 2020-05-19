@@ -32,7 +32,7 @@ class CampaignController {
 
   async store(req, res) {
     const data = req.body;
-    const { userId, files } = req;
+    const { userId, file } = req;
 
     const user = await User.findByPk(userId);
 
@@ -64,15 +64,13 @@ class CampaignController {
     const campaign = await Campaign.create({ ...data, creator: userId });
     const proprietary = campaign.dataValues.id;
 
-    files.forEach(async (file) => {
-      await CampaignFile.create({
-        name: file.originalname,
-        path: file.filename,
-        proprietary,
-      });
+    await CampaignFile.create({
+      name: file.originalname,
+      path: file.filename,
+      proprietary,
     });
 
-    return res.status(200).json({ campaign, files });
+    return res.status(200).json({ campaign, file });
   }
 
   async update(req, res) {
@@ -91,7 +89,7 @@ class CampaignController {
     });
 
     const data = req.body;
-    const { userId, files } = req;
+    const { userId, file } = req;
     const { id } = req.params;
 
     if (!(await schema.isValid(data))) {
@@ -122,17 +120,16 @@ class CampaignController {
       },
     });
 
-    if (files.length !== 0) {
+    if (file) {
       photos.forEach(async (photo) => {
         await photo.destroy();
       });
 
-      files.forEach(async (file) => {
-        await CampaignFile.create({
-          name: file.originalname,
-          path: file.filename,
-          proprietary,
-        });
+
+      await CampaignFile.create({
+        name: file.originalname,
+        path: file.filename,
+        proprietary,
       });
     }
 
