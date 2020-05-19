@@ -4,6 +4,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import SolicitationController from './app/controllers/SolicitationController';
 import CampaignController from './app/controllers/CampaignController';
+import DonationController from './app/controllers/DonationController';
 
 import authMiddleware from './app/middlewares/auth';
 import multerConfig from './config/multer';
@@ -25,12 +26,19 @@ routes.get('/solicitations', SolicitationController.index);
 routes.delete('/solicitations/:id', SolicitationController.delete);
 routes.put('/users', UserController.update);
 
+routes.get('/campaigns', CampaignController.index);
 routes.post('/campaigns', upload.array('files', 5), CampaignController.store);
+routes.delete('/campaigns/:id', CampaignController.delete);
 
 routes.put(
   '/campaigns/:id',
   upload.array('files', 5),
   CampaignController.update
 );
+
+routes.get('/donations', DonationController.index); // Essa rota é pros entregadores verem quais doações estão com a entrega pendente
+
+routes.post('/donations', DonationController.store);
+routes.delete('/donations/:id', DonationController.delete);
 
 export default routes;
