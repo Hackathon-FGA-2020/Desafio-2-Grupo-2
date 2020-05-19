@@ -25,11 +25,11 @@ routes.get('/solicitations', SolicitationController.index);
 routes.delete('/solicitations/:id', SolicitationController.delete);
 routes.put('/users', UserController.update);
 
-routes.post('/campaigns', upload.array('files', 5), CampaignController.store);
+routes.post('/campaigns', upload.single('file'), CampaignController.store);
 
 routes.put(
   '/campaigns/:id',
-  upload.array('files', 5),
+  upload.single('file'),
   CampaignController.update
 );
 

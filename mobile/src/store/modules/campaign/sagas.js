@@ -15,18 +15,19 @@ export function* createCampaign({ payload }) {
       description,
       fullDescription,
       tags,
-      files,
+      file,
     } = payload.campaign;
-
     const formData = new FormData();
 
     formData.append('name', name);
     formData.append('description', description);
     formData.append('full_description', fullDescription);
-    formData.append('tags', tags);
-    formData.append('files', files);
+    tags.forEach(tag => {
+      formData.append('tags[]', tag);
+    });
+    formData.append('file', file);
 
-    yield call(api.post, 'campaigns', formData);
+    const response = yield call(api.post, 'campaigns', formData);
 
     yield put(createCampaignSuccess());
   } catch (err) {
@@ -47,7 +48,7 @@ export function* updateCampaign({ payload }) {
       description,
       fullDescription,
       tags,
-      files,
+      file,
     } = payload.campaign;
 
     const formData = new FormData();
@@ -55,10 +56,12 @@ export function* updateCampaign({ payload }) {
     formData.append('name', name);
     formData.append('description', description);
     formData.append('full_description', fullDescription);
-    formData.append('tags', tags);
-    formData.append('files', files);
+    tags.forEach(tag => {
+      formData.append('tags[]', tag);
+    });
+    formData.append('file', file);
 
-    yield call(api.post, `campaigns/${id}`, formData);
+    yield call(api.put, `campaigns/${id}`, formData);
 
     yield put(updateCampaignSuccess());
   } catch (err) {

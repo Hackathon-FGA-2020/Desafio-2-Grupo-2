@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SignIn from './pages/SignIn';
+import NewCampaign from './pages/NewCampaign';
 
 export default function Routes() {
-  return <SignIn />;
+  return <NewCampaign />;
 }
