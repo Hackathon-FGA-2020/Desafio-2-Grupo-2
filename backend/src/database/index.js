@@ -5,10 +5,11 @@ import Solicitation from '../app/models/Solicitation';
 import Avatar from '../app/models/Avatar';
 import Campaign from '../app/models/Campaign';
 import CampaignFile from '../app/models/CampaignFile';
+import Donation from '../app/models/Donation';
 
 import databaseConfig from '../config/database';
 
-const models = [User, Solicitation, Avatar, Campaign, CampaignFile];
+const models = [User, Solicitation, Avatar, Campaign, CampaignFile, Donation];
 
 class Database {
   constructor() {
