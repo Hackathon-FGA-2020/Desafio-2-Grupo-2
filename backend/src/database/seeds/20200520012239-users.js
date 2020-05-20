@@ -10,7 +10,7 @@ module.exports = {
           user_type: 'donator',
           created_at: new Date(),
           updated_at: new Date(),
-          avatar_id: null,
+          avatar_id: 2,
         },
         {
           name: 'Israel',
@@ -19,7 +19,7 @@ module.exports = {
           user_type: 'admin',
           created_at: new Date(),
           updated_at: new Date(),
-          avatar_id: null,
+          avatar_id: 3,
         },
         {
           name: 'Joao',
@@ -28,7 +28,7 @@ module.exports = {
           user_type: 'entity',
           created_at: new Date(),
           updated_at: new Date(),
-          avatar_id: null,
+          avatar_id: 4,
         },
       ],
       {}
