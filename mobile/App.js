@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 import '~/config/ReactotronConfig';
 import Routes from '~/routes';
-import { navigationRef } from '~/services/RootNavigation.js';
+import { navigationRef } from '~/services/RootNavigation';
 import { store } from '~/store';
 import loadFont from '~/util/loadFonts';
 
