@@ -23,14 +23,8 @@ module.exports = {
 				}
 			},
 			receiverid: {
-				type: Sequelize.INTEGER,
 				allowNull: false,
-				onDelete: 'cascade',
-        onUpdate: 'cascade',
-				references: {
-					model: 'users',
-					key: 'id',
-				}
+				type: Sequelize.STRING
 			},
       created_at: {
         allowNull: false,

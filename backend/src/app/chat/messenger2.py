@@ -17,4 +17,4 @@ while True:
   if str == 'q':
     break
   else:
-    sio.emit('message', {'message': str, 'receiver': 1})
+    sio.emit('message', {'message': str, 'receiver': [3]})
