@@ -8,6 +8,7 @@ import CampaignDetails from './pages/CampaignDetails';
 import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
 import SignIn from './pages/SignIn';
+import HomePage from './pages/HomePage';
 
 const Tab = createBottomTabNavigator();
 
