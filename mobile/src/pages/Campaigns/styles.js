@@ -10,12 +10,16 @@ export const CampaignsList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
 })``;
 
-export const CampaignItem = styled(RectButton)`
+export const CampaignItem = styled.View`
   padding: 20px;
   margin: 0 0 20px;
-  background: rgba(40, 93, 118, 0.12);
+  background: rgba(68, 143, 179, 0.15);
   border-radius: 14px;
   align-items: center;
+`;
+
+export const CampaignContainerButton = styled.TouchableOpacity`
+  width: 100%;
 `;
 
 export const CampaignImage = styled.Image`
@@ -42,7 +46,7 @@ export const CampaignLocation = styled.Text`
 `;
 
 export const CampaignTagsContainer = styled.View`
-  max-width: 100%;
+  max-width: 90%;
   padding: 0 10px;
 
   align-items: center;

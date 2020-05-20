@@ -15,6 +15,7 @@ import {
   CampaignTags,
   CampaignMore,
   CampaignButton,
+  CampaignContainerButton,
 } from './styles';
 import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
@@ -51,15 +52,18 @@ export default function Campaigns() {
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item, index }) => (
           <>
-            <CampaignItem onPress={() => navigateToCampaign(item.id)}>
-              <CampaignImage source={item.file} />
-              <CampaignTitle>{item.name}</CampaignTitle>
-              <CampaignLocation>{item.location}</CampaignLocation>
-              <CampaignTagsContainer>
-                {item.tags.map((tag) => (
-                  <CampaignTags key={tag}>{tag}</CampaignTags>
-                ))}
-              </CampaignTagsContainer>
+            <CampaignItem>
+              <CampaignContainerButton
+                onPress={() => navigateToCampaign(item.id)}>
+                <CampaignImage source={item.file} />
+                <CampaignTitle>{item.name}</CampaignTitle>
+                <CampaignLocation>{item.location}</CampaignLocation>
+                <CampaignTagsContainer>
+                  {item.tags.map((tag) => (
+                    <CampaignTags key={tag}>{tag}</CampaignTags>
+                  ))}
+                </CampaignTagsContainer>
+              </CampaignContainerButton>
               <CampaignMore>
                 <CampaignDate>{item.date}</CampaignDate>
                 <CampaignButton>
@@ -73,4 +77,4 @@ export default function Campaigns() {
       />
     </Container>
   );
-};
+}

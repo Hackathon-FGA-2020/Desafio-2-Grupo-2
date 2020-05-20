@@ -28,7 +28,10 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaProvider>
         <NavigationContainer ref={navigationRef}>
-          <StatusBar barStyle="light-content" backgroundColor="#0A4090" />
+          <StatusBar
+            barStyle="dark-content"
+            backgroundColor="rgba(68, 143, 179, 0.3)"
+          />
           <Routes />
         </NavigationContainer>
       </SafeAreaProvider>
