@@ -29,9 +29,8 @@ export const MainButton = styled(RectButton)`
   justify-content: center;
 `;
 
-export const SideButton = styled(RectButton)`
+export const SideButton = styled.TouchableOpacity`
   height: 54px;
-  padding: 0 20px;
   margin: 0 auto;
   align-items: center;
   justify-content: center;
