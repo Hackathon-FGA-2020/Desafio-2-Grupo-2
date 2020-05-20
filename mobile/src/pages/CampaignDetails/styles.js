@@ -3,19 +3,21 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  padding: 0 20px;
+  padding: 10px 20px;
 `;
 
-export const CampaignsList = styled.FlatList.attrs({
-  showsVerticalScrollIndicator: false,
-})``;
-
-export const CampaignItem = styled(RectButton)`
-  padding: 20px;
-  margin: 0 0 20px;
-  background: rgba(40, 93, 118, 0.12);
-  border-radius: 14px;
+export const Header = styled.View`
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+`;
+
+export const Logo = styled.Text`
+  font-size: 32px;
+  font-family: Champagne;
+  color: #707070;
+  margin: 0 auto;
 `;
 
 export const CampaignImage = styled.Image`
@@ -63,16 +65,6 @@ export const CampaignTags = styled.Text`
 export const CampaignDate = styled.Text`
   font-family: Champagne;
   font-size: 18px;
-`;
-
-export const CampaignMore = styled.View`
-  width: 100%;
-  padding: 0 15px;
-  margin: 20px 0 0;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 export const CampaignButton = styled.TouchableOpacity`
