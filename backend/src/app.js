@@ -10,45 +10,8 @@ import routes from './routes';
 
 import './database';
 
-const port = 30003;
-const io = require('socket.io').listen(port);
-const socketList = {}
-var handler = new ChatHandler();
-io.on('connection', (socket) => {
-	socket.on('join', (data) => {
-		if(handler.valid(data.userid)){
-			socket.userid = data.userid;
-			socketList[data.userid] = socket;
-			socket.emit('history', handler.fetch(data.userid));
-		} else {
-			socket.disconnect();
-		}
-	});
-	
-	socket.on('message', (data) => {
-		for(var receiver of data.receiver){
-			if(handler.valid(receiver)){
-				//user is online
-				if(socketList.hasOwnProperty(receiver)){
-					socketList[receiver].emit('message', {
-						userid: socket.userid,
-						message: data.message
-					});
-				}
-			} else {
-				return;
-			}
-		}
-		handler.store(data.message, socket.userid, data.receiver);
-	});
-
-	socket.on('typing', () => {});
-	socket.on('stop typing', () => {});
-});
-
-io.on('disconnect', () => {
-	io.socket.removeAllListeners();
-});
+const handler = new ChatHandler();
+handler.chatServer();
 
 class App {
   constructor() {
