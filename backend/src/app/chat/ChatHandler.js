@@ -3,28 +3,34 @@ import User from '../models/User'
 import Sequelize from 'sequelize'
 
 class ChatHandler {
-	async fetch(userid, socket, scroll, chatLimit){
+	async fetch(socket, chatLimit){
+		const userid = socket.userid;
+		const scroll = socket.scroll;
 		var chat = await Chat.findAll({
 			where: {
 				[Sequelize.Op.or]: [
 					{
-						receiverid: {
-							[Sequelize.Op.or]: {
-								[Sequelize.Op.like]: `%[${userid},%`,
-								[Sequelize.Op.like]: `%,${userid},%`,
-								[Sequelize.Op.like]: `%,${userid}]%`,
-							}
-						}
+						receiverid: { [Sequelize.Op.like]: `%[${userid},%` }
+					},
+					{
+						receiverid: { [Sequelize.Op.like]: `%,${userid},%` }
+					},
+					{
+						receiverid: { [Sequelize.Op.like]: `%,${userid}]%` }
+						
+					},
+					{
+						receiverid: { [Sequelize.Op.like]: `[${userid}]`}
 					},
 					{
 					senderid: userid
-					}
+					},
 				]
 			},
 			limit: chatLimit,
 			offset: chatLimit * scroll
 		});
-		if(chat)
+		if(chat.length > 0)
 			socket.emit('history', chat);
 		else
 			socket.emit('empty');
@@ -50,7 +56,7 @@ class ChatHandler {
 					socket.scroll = 0;
 					if(user){
 						socketList[data.userid] = socket;
-						this.fetch(data.userid, socket, 0, chatLimit);
+						this.fetch(socket, chatLimit);
 					} else {
 						console.log('Bad Request');
 						socket.emit('failure');
@@ -83,9 +89,9 @@ class ChatHandler {
 					this.store(data.message, socket.userid, data.receiver);
 			});
 
-			socket.on('scroll', (data) => {
+			socket.on('scroll', () => {
 				socket.scroll++;
-				this.fetch(data.userid, socket, socket.scroll, chatLimit);
+				this.fetch(socket, chatLimit);
 			})
 			
 			socket.on('typing', () => {});
