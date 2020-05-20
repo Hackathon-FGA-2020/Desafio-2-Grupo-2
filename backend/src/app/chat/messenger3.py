@@ -22,7 +22,7 @@ def empty():
 
 @sio.event
 def scroll():
-  sio.emit('scroll', {'userid': '3'})
+  sio.emit('scroll')
   
 sio.connect('http://localhost:30003')
 while True:
