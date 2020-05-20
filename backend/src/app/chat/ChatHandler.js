@@ -3,8 +3,7 @@ import User from '../models/User'
 import Sequelize from 'sequelize'
 
 class ChatHandler {
-	async fetch(userid, socket){
-		const chatLimit = 20;
+	async fetch(userid, socket, scroll, chatLimit){
 		var chat = await Chat.findAll({
 			where: {
 				[Sequelize.Op.or]: [
@@ -22,9 +21,13 @@ class ChatHandler {
 					}
 				]
 			},
-			limit: chatLimit
+			limit: chatLimit,
+			offset: chatLimit * scroll
 		});
-		socket.emit('history', chat);			
+		if(chat)
+			socket.emit('history', chat);
+		else
+			socket.emit('empty');
 	}
 	
 	async store(message, sender, receiver){
@@ -39,13 +42,15 @@ class ChatHandler {
 		const port = 30003;
 		const io = require('socket.io').listen(port);
 		const socketList = {}
+		const chatLimit = 20;
 		io.on('connection', (socket) => {
 			socket.on('join', (data) => {
 				User.findByPk(data.userid).then(user => {
 					socket.userid = data.userid;
+					socket.scroll = 0;
 					if(user){
 						socketList[data.userid] = socket;
-						this.fetch(data.userid, socket);
+						this.fetch(data.userid, socket, 0, chatLimit);
 					} else {
 						console.log('Bad Request');
 						socket.emit('failure');
@@ -78,6 +83,11 @@ class ChatHandler {
 					this.store(data.message, socket.userid, data.receiver);
 			});
 
+			socket.on('scroll', (data) => {
+				socket.scroll++;
+				this.fetch(data.userid, socket, socket.scroll, chatLimit);
+			})
+			
 			socket.on('typing', () => {});
 			socket.on('stop typing', () => {});
 			socket.on('disconnect', () => {

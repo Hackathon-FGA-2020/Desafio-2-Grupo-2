@@ -15,6 +15,15 @@ def disconnect():
   sio.disconnect()
   exit()
 
+#no messages on server
+@sio.on('empty')
+def empty():
+  pass
+
+@sio.event
+def scroll():
+  sio.emit('scroll', {'userid': '3'})
+  
 sio.connect('http://localhost:30003')
 while True:
   str = input()
