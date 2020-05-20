@@ -1,10 +1,13 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { AppLoading } from 'expo';
 import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 
 import '~/config/ReactotronConfig';
 import Routes from '~/routes';
+import { navigationRef } from '~/services/RootNavigation.js';
 import { store } from '~/store';
 import loadFont from '~/util/loadFonts';
 
@@ -23,8 +26,12 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <StatusBar barStyle="light-content" backgroundColor="#0A4090" />
-      <Routes />
+      <SafeAreaProvider>
+        <NavigationContainer ref={navigationRef}>
+          <StatusBar barStyle="light-content" backgroundColor="#0A4090" />
+          <Routes />
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 }
