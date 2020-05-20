@@ -10,6 +10,10 @@ def connect():
 def parse(data):
   print(data)
 
+@sio.on('failure')
+def disconnect():
+  sio.disconnect()
+  exit()
 
 sio.connect('http://localhost:30003')
 while True:
@@ -17,4 +21,4 @@ while True:
   if str == 'q':
     break
   else:
-    sio.emit('message', {'message': str, 'receiver': 1})
+    sio.emit('message', {'message': str, 'receiver': [3]})
