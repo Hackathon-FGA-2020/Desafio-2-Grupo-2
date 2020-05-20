@@ -1,7 +1,21 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
-import NewCampaign from './pages/NewCampaign';
+import BottomTab from './components/BottomTab';
+import Campaigns from './pages/Campaigns';
+import Chat from './pages/Chat';
+import SignIn from './pages/SignIn';
+
+const Tab = createBottomTabNavigator();
 
 export default function Routes() {
-  return <NewCampaign />;
+  return (
+    <Tab.Navigator
+      initialRouteName="Campaign"
+      tabBar={(props) => <BottomTab {...props} />}>
+      <Tab.Screen name="SignIn" component={SignIn} />
+      <Tab.Screen name="Campaign" component={Campaigns} />
+      <Tab.Screen name="Chat" component={Chat} />
+    </Tab.Navigator>
+  );
 }
