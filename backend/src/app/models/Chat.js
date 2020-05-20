@@ -13,13 +13,7 @@ export default class Chat extends Model {
 						key: 'id',
 					},
 				},
-				receiverid: {
-					type: Sequelize.INTEGER,
-					references: {
-						model: User,
-						key: 'id',
-					},
-				},
+				receiverid: Sequelize.STRING,
 			},
 			{ sequelize, }
 		);

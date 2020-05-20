@@ -19,19 +19,25 @@ io.on('connection', (socket) => {
 		if(handler.valid(data.userid)){
 			socket.userid = data.userid;
 			socketList[data.userid] = socket;
+			socket.emit('history', handler.fetch(data.userid));
 		} else {
 			socket.disconnect();
 		}
 	});
 
 	socket.on('message', (data) => {
-		if(socketList.hasOwnProperty(data.receiver)){
-			socketList[data.receiver].emit('message', {
-				userid: socket.userid,
-				message: data.message
-			})
-		};
-		handler.store(data.message, socket.userid, data.receiver);
+		for(var receiver of data.receiver){
+			if(handler.valid(receiver)){
+				//user is online
+				if(socketList.hasOwnProperty(receiver)){
+					socketList[receiver].emit('message', {
+						userid: socket.userid,
+						message: data.message
+					});
+				}
+				handler.store(data.message, socket.userid, receiver);
+			}
+		}
 	});
 
 	socket.on('typing', () => {});
