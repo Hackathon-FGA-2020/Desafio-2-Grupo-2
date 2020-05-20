@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { EvilIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
 import {
   Container,
-  Logo,
   CampaignsList,
   CampaignItem,
   CampaignImage,
@@ -20,6 +20,7 @@ import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
 
 export default function Campaigns() {
+  const navigation = useNavigation();
   const campaign = {
     name: 'Campanha do Agasalho de Igreja AssembleiaCristo é o Senhor',
     location: 'Samambaia - DF',
@@ -37,6 +38,11 @@ export default function Campaigns() {
       ...campaign,
     },
   ];
+
+  function navigateToCampaign(id) {
+    navigation.navigate('CampaignDetails', { id });
+  }
+
   return (
     <Container>
       <CampaignsList
@@ -45,8 +51,7 @@ export default function Campaigns() {
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item, index }) => (
           <>
-            {index === 0 && <Logo>Solidarte</Logo>}
-            <CampaignItem>
+            <CampaignItem onPress={() => navigateToCampaign(item.id)}>
               <CampaignImage source={item.file} />
               <CampaignTitle>{item.name}</CampaignTitle>
               <CampaignLocation>{item.location}</CampaignLocation>

@@ -13,9 +13,9 @@ export default function BottomTab({ navigation, ...rest }) {
   );
   const [route, setRoute] = useState(initialRouteName);
 
-  function navigateTo(routeName) {
-    navigate(routeName);
-    setRoute(routeName);
+  function navigateTo(routeFather, routeName) {
+    navigate(routeFather, { screen: routeName });
+    setRoute(routeFather);
   }
 
   return (
@@ -25,21 +25,21 @@ export default function BottomTab({ navigation, ...rest }) {
           <MaterialCommunityIcons
             name="account"
             size={28}
-            color={route === 'SignIn' ? '#fff' : 'rgba(255, 255, 255, 0.6)'}
+            color={route === 'SignIn' ? '#061C57' : 'rgba(255, 255, 255, 0.6)'}
           />
         </SideButton>
-        <MainButton onPress={() => navigateTo('Campaign')}>
+        <MainButton onPress={() => navigateTo('Dashboard', 'Campaigns')}>
           <Ionicons
             name="ios-star"
             size={28}
-            color={route === 'Campaign' ? '#285D76' : '#fff'}
+            color={route === 'Dashboard' ? '#061C57' : '#fff'}
           />
         </MainButton>
         <SideButton onPress={() => navigateTo('Chat')}>
           <Ionicons
             name="ios-chatbubbles"
             size={28}
-            color={route === 'Chat' ? '#fff' : 'rgba(255, 255, 255, 0.6)'}
+            color={route === 'Chat' ? '#061C57' : 'rgba(255, 255, 255, 0.6)'}
           />
         </SideButton>
       </Container>
@@ -48,5 +48,5 @@ export default function BottomTab({ navigation, ...rest }) {
 }
 
 BottomTab.propTypes = {
-  navigation: PropTypes.PropTypes.objectOf(PropTypes.func).isRequired,
+  navigation: PropTypes.objectOf(PropTypes.func).isRequired,
 };
