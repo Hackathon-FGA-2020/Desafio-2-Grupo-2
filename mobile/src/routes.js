@@ -5,17 +5,17 @@ import { useSelector } from 'react-redux';
 
 import BottomTab from './components/BottomTab';
 import Header from './components/Header';
+import About from './pages/About';
 import CampaignDetails from './pages/CampaignDetails';
 import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
+import ChatDetails from './pages/ChatDetails';
 import ChooseUserType from './pages/ChooseUserType';
+import Delivery from './pages/Delivery';
 import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Delivery from './pages/Delivery';
-import ChatDetails from './pages/ChatDetails';
-import About from './pages/About';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +43,9 @@ function ChatScreens() {
   return (
     <Stack.Navigator
       initialRouteName="Chat"
-      screenOptions={{ header: () => <Header initialRoute="Chat" title="Mensagens"/> }}>
+      screenOptions={{
+        header: () => <Header initialRoute="Chat" title="Mensagens" />,
+      }}>
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="ChatDetails" component={ChatDetails} />
     </Stack.Navigator>

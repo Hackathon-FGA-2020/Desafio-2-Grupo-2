@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeLatest, all, delay } from 'redux-saga/effects';
 
 import { signInSuccess, signFailure, signUpSuccess } from './actions';
 import api from '~/services/api';
@@ -19,7 +19,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(user, token));
-    navigate('User', { screen: 'Profile' });
+    navigate('Profile');
   } catch (err) {
     Alert.alert('Erro!', 'Erro de autenticação, verifique seus dados');
 
@@ -41,6 +41,7 @@ export function* signUp({ payload }) {
     yield call(api.post, 'solicitations', formData);
 
     yield put(signUpSuccess());
+    navigate('SignIn');
   } catch (err) {
     Alert.alert('Erro!', 'Erro durante o registro, verifique seus dados');
 
@@ -60,8 +61,13 @@ export function setToken({ payload }) {
   }
 }
 
+export function signOut() {
+  api.defaults.headers.Authorization = null;
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);

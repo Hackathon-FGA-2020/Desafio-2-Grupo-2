@@ -2,13 +2,11 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useRef, useState } from 'react';
-import { Alert } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { ActivityIndicator } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 import {
-  SubText,
-  SubTextButton,
   Container,
   Title,
   Label,
@@ -26,8 +24,9 @@ import { ErrorText } from '~/components/Input/styles';
 import { signUpRequest } from '~/store/modules/auth/actions';
 
 export default function SignIn() {
+  const loading = useSelector((state) => state.auth.loading);
+
   const dispatch = useDispatch();
-  const { navigate } = useNavigation();
   const { params } = useRoute();
   const { userType } = params;
   const [errorImage, setErrorImage] = useState(null);
@@ -35,19 +34,19 @@ export default function SignIn() {
 
   const formRef = useRef(null);
 
-  async function handleSubmit({ name, email, password, image }) {
+  async function handleSubmit({ name, email, password }) {
     try {
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        image: Yup.object().required('A imagem é obrigatória'),
+        file: Yup.object().required('A imagem é obrigatória'),
         name: Yup.string().required('O nome é obrigatório'),
         email: Yup.string().email().required('O email é obrigatório'),
         password: Yup.string().min(6).required('A senha é obrigatória'),
       });
 
       await schema.validate(
-        { name, email, password },
+        { name, email, password, file },
         {
           abortEarly: false,
         }
@@ -60,7 +59,7 @@ export default function SignIn() {
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach((error) => {
           validationErrors[error.path] = error.message;
-          if (error.path === 'image') {
+          if (error.path === 'file') {
             setErrorImage(error);
           }
         });
@@ -117,8 +116,12 @@ export default function SignIn() {
           <Label>Senha</Label>
           <TextInput name="password" secureTextEntry />
         </Form>
-        <Button onPress={() => formRef.current.submitForm()}>
-          <TextButton>Vamos lá</TextButton>
+        <Button loading={loading} onPress={() => formRef.current.submitForm()}>
+          {loading ? (
+            <ActivityIndicator size="small" color="#eee" />
+          ) : (
+              <TextButton>Vamos lá</TextButton>
+            )}
         </Button>
       </FormContainer>
       <Footer />
