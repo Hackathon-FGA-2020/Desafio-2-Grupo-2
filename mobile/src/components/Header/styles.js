@@ -9,6 +9,7 @@ export const Wrapper = styled.View`
   justify-content: space-between;
   padding: ${Constants.statusBarHeight + 10}px 25px 0;
   margin-bottom: 40px;
+  background: #eee;
 `;
 
 export const Logo = styled.Text`

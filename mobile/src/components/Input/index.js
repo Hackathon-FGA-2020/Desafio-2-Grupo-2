@@ -1,7 +1,8 @@
 import { useField } from '@unform/core';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
-import { TextInput } from 'react-native';
+
+import { StyledInput } from './styles';
 
 function Input({ name, ...rest }) {
   const inputRef = useRef(null);
@@ -28,7 +29,7 @@ function Input({ name, ...rest }) {
     });
   }, [fieldName, registerField]);
   return (
-    <TextInput
+    <StyledInput
       ref={inputRef}
       keyboardAppearance="dark"
       defaultValue={defaultValue}

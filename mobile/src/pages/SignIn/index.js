@@ -1,44 +1,43 @@
+import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
+  SubText,
   Container,
-  Background,
   Title,
   Label,
   FormContainer,
-  TextInput,
   Button,
   TextButton,
-} from './styles';
+  Logo,
+  SubTextButton,
+} from '../_layouts/auth/styles';
+import TextInput from '~/components/Input';
 import { signInRequest } from '~/store/modules/auth/actions';
 
 export default function SignIn() {
   const dispatch = useDispatch();
+  const { navigate } = useNavigation();
+
   const formRef = useRef(null);
 
   function handleSubmit({ email, password }) {
     dispatch(signInRequest(email, password));
   }
 
+  function navigateToSignUp() {
+    navigate('User', { screen: 'SignUp' });
+  }
+
   return (
     <Container>
-      <Background />
-      <FormContainer
-        style={{
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.23,
-          shadowRadius: 2.62,
-          elevation: 4,
-        }}>
-        <Title>Login</Title>
+      <Title>Que bom que voltou!</Title>
+      <FormContainer>
+        <Logo />
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Label>E-mail</Label>
+          <Label>Email</Label>
           <TextInput
             name="email"
             keyboardType="email-address"
@@ -48,8 +47,11 @@ export default function SignIn() {
           <Label>Senha</Label>
           <TextInput name="password" secureTextEntry />
         </Form>
+        <SubTextButton onPress={navigateToSignUp}>
+          <SubText>Ainda não possui conta?</SubText>
+        </SubTextButton>
         <Button onPress={() => formRef.current.submitForm()}>
-          <TextButton>Entrar</TextButton>
+          <TextButton>Vamos lá</TextButton>
         </Button>
       </FormContainer>
     </Container>
