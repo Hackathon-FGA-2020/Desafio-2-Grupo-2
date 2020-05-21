@@ -3,6 +3,7 @@ import { call, put, takeLatest, all } from 'redux-saga/effects';
 
 import { signInSuccess, signFailure, signUpSuccess } from './actions';
 import api from '~/services/api';
+import { navigate } from '~/services/RootNavigation';
 
 export function* signIn({ payload }) {
   try {
@@ -18,6 +19,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(user, token));
+    navigate('User', { screen: 'Profile' });
   } catch (err) {
     Alert.alert('Erro!', 'Erro de autenticação, verifique seus dados');
 
@@ -27,14 +29,16 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
   try {
-    const { name, email, password, userType } = payload;
+    const { name, email, password, userType, file } = payload;
 
-    yield call(api.post, 'users', {
-      name,
-      email,
-      password,
-      user_type: userType,
-    });
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('user_type', userType);
+    formData.append('file', file);
+
+    yield call(api.post, 'solicitations', formData);
 
     yield put(signUpSuccess());
   } catch (err) {

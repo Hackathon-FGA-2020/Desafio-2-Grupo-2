@@ -1,12 +1,16 @@
+import { Dimensions } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
+
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 export const Wrapper = styled(SafeAreaView)`
   position: absolute;
   bottom: 0;
   padding: 0 60px 10px;
   width: 100%;
+  top: ${screenHeight - 22}px;
   margin: 0 auto 10px;
   background: transparent;
 `;

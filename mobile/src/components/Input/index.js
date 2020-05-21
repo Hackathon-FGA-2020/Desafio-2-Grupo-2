@@ -1,7 +1,8 @@
 import { useField } from '@unform/core';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
-import { TextInput } from 'react-native';
+
+import { StyledInput, ErrorText } from './styles';
 
 function Input({ name, ...rest }) {
   const inputRef = useRef(null);
@@ -28,18 +29,22 @@ function Input({ name, ...rest }) {
     });
   }, [fieldName, registerField]);
   return (
-    <TextInput
-      ref={inputRef}
-      keyboardAppearance="dark"
-      defaultValue={defaultValue}
-      placeholderTextColor="#666360"
-      onChangeText={(value) => {
-        if (inputRef.current) {
-          inputRef.current.value = value;
-        }
-      }}
-      {...rest}
-    />
+    <>
+      <StyledInput
+        ref={inputRef}
+        keyboardAppearance="dark"
+        defaultValue={defaultValue}
+        placeholderTextColor="#666360"
+        error={!!error}
+        onChangeText={(value) => {
+          if (inputRef.current) {
+            inputRef.current.value = value;
+          }
+        }}
+        {...rest}
+      />
+      {error && <ErrorText className="error">{error}</ErrorText>}
+    </>
   );
 }
 export default Input;
