@@ -28,14 +28,10 @@ routes.put('/users', UserController.update);
 
 routes.post('/campaigns', upload.single('file'), CampaignController.store);
 routes.get('/campaigns', CampaignController.index);
+routes.get('/campaigns/:id', CampaignController.show);
 routes.delete('/campaigns/:id', CampaignController.delete);
 
-
-routes.put(
-  '/campaigns/:id',
-  upload.single('file'),
-  CampaignController.update
-);
+routes.put('/campaigns/:id', upload.single('file'), CampaignController.update);
 
 routes.get('/donations', DonationController.index); // Essa rota é pros entregadores verem quais doações estão com a entrega pendente
 

@@ -12,6 +12,7 @@ import Chat from './pages/Chat';
 import ChatDetails from './pages/ChatDetails';
 import ChooseUserType from './pages/ChooseUserType';
 import Delivery from './pages/Delivery';
+import EditCampaign from './pages/EditCampaign';
 import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
@@ -32,7 +33,7 @@ function CampaignScreens() {
         },
         header: () => <Header title="" initialRoute="Campaigns" />,
       }}>
-      <Stack.Screen name="Campaigns" component={Campaigns} />
+      <Stack.Screen name="Campaigns" component={EditCampaign} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
       <Stack.Screen name="Delivery" component={Delivery} />
       <Stack.Screen name="About" component={About} />
@@ -83,7 +84,7 @@ function ProfileScreens() {
 export default function Routes() {
   return (
     <Tab.Navigator
-      initialRouteName="User"
+      initialRouteName="Dashboard"
       tabBar={(props) => <BottomTab {...props} />}>
       <Tab.Screen name="User" component={ProfileScreens} />
       <Tab.Screen name="Dashboard" component={CampaignScreens} />

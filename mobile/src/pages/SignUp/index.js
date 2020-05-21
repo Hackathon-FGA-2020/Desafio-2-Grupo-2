@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useRef, useState } from 'react';
@@ -39,7 +39,7 @@ export default function SignIn() {
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        file: Yup.object().required('A imagem é obrigatória'),
+        file: Yup.object().required('A imagem é obrigatória').nullable(),
         name: Yup.string().required('O nome é obrigatório'),
         email: Yup.string().email().required('O email é obrigatório'),
         password: Yup.string().min(6).required('A senha é obrigatória'),

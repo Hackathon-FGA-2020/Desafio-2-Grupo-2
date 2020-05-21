@@ -10,24 +10,17 @@ import api from '~/services/api';
 
 export function* createCampaign({ payload }) {
   try {
-    const {
-      name,
-      description,
-      fullDescription,
-      tags,
-      file,
-    } = payload.campaign;
+    const { name, description, tags, file } = payload.campaign;
     const formData = new FormData();
 
     formData.append('name', name);
     formData.append('description', description);
-    formData.append('full_description', fullDescription);
-    tags.forEach(tag => {
+    tags.forEach((tag) => {
       formData.append('tags[]', tag);
     });
     formData.append('file', file);
 
-    const response = yield call(api.post, 'campaigns', formData);
+    yield call(api.post, 'campaigns', formData);
 
     yield put(createCampaignSuccess());
   } catch (err) {
@@ -42,21 +35,13 @@ export function* createCampaign({ payload }) {
 
 export function* updateCampaign({ payload }) {
   try {
-    const {
-      id,
-      name,
-      description,
-      fullDescription,
-      tags,
-      file,
-    } = payload.campaign;
+    const { id, name, description, tags, file } = payload.campaign;
 
     const formData = new FormData();
 
     formData.append('name', name);
     formData.append('description', description);
-    formData.append('full_description', fullDescription);
-    tags.forEach(tag => {
+    tags.forEach((tag) => {
       formData.append('tags[]', tag);
     });
     formData.append('file', file);

@@ -28,14 +28,15 @@ class CampaignController {
     });
 
     const files = await CampaignFile.findAll({
-      where: { proprietary: campaigns.map(campaign => campaign.id) }
-    })
+      where: { proprietary: campaigns.map((campaign) => campaign.id) },
+    });
 
     const CampaignsWithFile = campaigns.map(
       ({ id, name, description, tags, updateAt, campaignCreator }) => {
-        const file = files.find(file => file.proprietary === id);
+        const file = files.find((file) => file.proprietary === id);
         return { id, name, description, tags, updateAt, campaignCreator, file };
-      });
+      }
+    );
 
     return res.json(CampaignsWithFile);
   }
@@ -81,6 +82,49 @@ class CampaignController {
     });
 
     return res.status(200).json({ campaign, file });
+  }
+
+  async show(req, res) {
+    const { id: campaign_id } = req.params;
+    const {
+      id,
+      name,
+      description,
+      tags,
+      updateAt,
+      campaignCreator,
+    } = await Campaign.findByPk(campaign_id, {
+      attributes: ['id', 'name', 'description', 'tags', 'updatedAt'],
+      include: [
+        {
+          model: User,
+          as: 'campaignCreator',
+          attributes: ['id', 'name', 'email'],
+          include: [
+            {
+              model: Avatar,
+              as: 'avatar',
+            },
+          ],
+        },
+      ],
+    });
+
+    const file = await CampaignFile.findOne({
+      where: { proprietary: campaign_id },
+    });
+
+    const CampaignWithFile = {
+      id,
+      name,
+      description,
+      tags,
+      updateAt,
+      campaignCreator,
+      file,
+    };
+
+    return res.json(CampaignWithFile);
   }
 
   async update(req, res) {
@@ -134,7 +178,6 @@ class CampaignController {
       photos.forEach(async (photo) => {
         await photo.destroy();
       });
-
 
       await CampaignFile.create({
         name: file.originalname,
