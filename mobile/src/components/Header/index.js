@@ -10,7 +10,7 @@ import { Wrapper, WrapperSign, ButtonGoBack, Logo, Title } from './styles';
 export default function Header({ title, initialRoute }) {
   const navigation = useNavigation();
   const route = useRoute();
-
+  console.tron.log(route);
   function navigateToBack() {
     navigation.goBack();
   }
@@ -18,7 +18,7 @@ export default function Header({ title, initialRoute }) {
   function Container({ children }) {
     return (
       <>
-        {initialRoute === 'Sign' ? (
+        {route.name === 'Sign' || route.name === 'ChooseUserType' ? (
           <WrapperSign>{children}</WrapperSign>
         ) : (
             <Wrapper>{children}</Wrapper>

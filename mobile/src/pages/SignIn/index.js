@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
 
 import {
   SubText,
@@ -24,12 +25,34 @@ export default function SignIn() {
 
   const formRef = useRef(null);
 
-  function handleSubmit({ email, password }) {
-    dispatch(signInRequest(email, password));
-  }
+  async function handleSubmit({ email, password }) {
+    try {
+      formRef.current.setErrors({});
 
-  function navigateToSignUp() {
-    navigate('User', { screen: 'SignUp' });
+      const schema = Yup.object().shape({
+        email: Yup.string().email().required('O email é obrigatório'),
+        password: Yup.string().min(6).required('A senha é obrigatória'),
+      });
+
+      await schema.validate(
+        { email, password },
+        {
+          abortEarly: false,
+        }
+      );
+
+      dispatch(signInRequest(data.email, data.password));
+    } catch (err) {
+      const validationErrors = {};
+
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+
+        formRef.current.setErrors(validationErrors);
+      }
+    }
   }
 
   return (
@@ -48,9 +71,6 @@ export default function SignIn() {
           <Label>Senha</Label>
           <TextInput name="password" secureTextEntry />
         </Form>
-        <SubTextButton onPress={navigateToSignUp}>
-          <SubText>Ainda não possui conta?</SubText>
-        </SubTextButton>
         <Button onPress={() => formRef.current.submitForm()}>
           <TextButton>Vamos lá</TextButton>
         </Button>

@@ -9,7 +9,7 @@ export const Container = styled.ScrollView.attrs({
 })`
   flex: 1;
   padding: 50px 30px;
-  margin: 50px 0 20px;
+  margin: 0px 0 20px;
   background: #eee;
 `;
 
@@ -34,16 +34,6 @@ export const Title = styled.Text`
   font-size: 26px;
   color: #121212;
   font-family: Champagne;
-`;
-
-export const SubTextButton = styled.TouchableOpacity`
-  margin: 10px 10px 5px;
-`;
-
-export const SubText = styled.Text`
-  text-align: right;
-  color: #448fb3;
-  font-family: ChampagneBold;
 `;
 
 export const Logo = styled.Image`
@@ -90,5 +80,5 @@ export const Avatar = styled.Image`
   border-radius: 40px;
   background: ${lighten(0.05, '#eee')};
   border-width: 1px;
-  border-color: ${darken(0.1, '#eee')};
+  border-color: ${(props) => (props.error ? '#FB4C4D' : darken(0.1, '#eee'))};
 `;

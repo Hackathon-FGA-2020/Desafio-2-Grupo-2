@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import React, { useRef, useState } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
 
 import {
   SubText,
@@ -21,6 +22,7 @@ import {
 } from '../_layouts/auth/styles';
 import Footer from '~/components/Footer';
 import TextInput from '~/components/Input';
+import { ErrorText } from '~/components/Input/styles';
 import { signUpRequest } from '~/store/modules/auth/actions';
 
 export default function SignIn() {
@@ -28,20 +30,43 @@ export default function SignIn() {
   const { navigate } = useNavigation();
   const { params } = useRoute();
   const { userType } = params;
-
+  const [errorImage, setErrorImage] = useState(null);
   const [file, setFile] = useState(null);
 
   const formRef = useRef(null);
 
-  function handleSubmit({ name, email, password }) {
-    console.tron.log(file);
-    if (!file) {
-      Alert.alert(
-        'Atenção',
-        'A imagem é obrigatória no cadastro, para a sua segurança'
+  async function handleSubmit({ name, email, password, image }) {
+    try {
+      formRef.current.setErrors({});
+
+      const schema = Yup.object().shape({
+        image: Yup.object().required('A imagem é obrigatória'),
+        name: Yup.string().required('O nome é obrigatório'),
+        email: Yup.string().email().required('O email é obrigatório'),
+        password: Yup.string().min(6).required('A senha é obrigatória'),
+      });
+
+      await schema.validate(
+        { name, email, password },
+        {
+          abortEarly: false,
+        }
       );
-    } else {
+
       dispatch(signUpRequest(file, name, email, password, userType));
+    } catch (err) {
+      const validationErrors = {};
+
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+          if (error.path === 'image') {
+            setErrorImage(error);
+          }
+        });
+
+        formRef.current.setErrors(validationErrors);
+      }
     }
   }
 
@@ -69,18 +94,15 @@ export default function SignIn() {
     }
   }
 
-  function navigateToSignIn() {
-    navigate('User', { screen: 'SignIn' });
-  }
-
   return (
     <Container>
       <Title>Então basta preencher os campos</Title>
       <FormContainer>
         <Logo />
         <AvatarButton onPress={pickImage}>
-          <Avatar source={{ uri: file?.uri }} />
+          <Avatar source={{ uri: file?.uri }} error={!!errorImage} />
           <AvatarButtonText>Adicionar uma foto</AvatarButtonText>
+          {errorImage && <ErrorText>{errorImage.message}</ErrorText>}
         </AvatarButton>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Label>Nome</Label>
@@ -95,9 +117,6 @@ export default function SignIn() {
           <Label>Senha</Label>
           <TextInput name="password" secureTextEntry />
         </Form>
-        <SubTextButton onPress={navigateToSignIn}>
-          <SubText>Já possui conta?</SubText>
-        </SubTextButton>
         <Button onPress={() => formRef.current.submitForm()}>
           <TextButton>Vamos lá</TextButton>
         </Button>
