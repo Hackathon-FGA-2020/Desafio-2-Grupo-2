@@ -3,14 +3,21 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View } from 'react-native';
 
-import { Wrapper, WrapperSign, ButtonGoBack, ButtonLogo, Logo, Title } from './styles';
+import {
+  Wrapper,
+  WrapperSign,
+  ButtonGoBack,
+  ButtonLogo,
+  Logo,
+  Title,
+} from './styles';
 
 export default function Header({ title, initialRoute }) {
   const navigation = useNavigation();
   const route = useRoute();
-  console.tron.log(route);
+  // console.tron.log(route);
+
   function navigateToBack() {
     navigation.goBack();
   }
@@ -33,7 +40,19 @@ export default function Header({ title, initialRoute }) {
   function HomeHeader() {
     return (
       <Container>
-        {title ? <Title>{title}</Title> : <ButtonLogo onPress={navigateToAbout}><Logo>Solidarte</Logo></ButtonLogo>}
+        {title ? (
+          <Title>{title}</Title>
+        ) : (
+            <>
+              {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
+                <ButtonLogo onPress={navigateToAbout}>
+                  <Logo>Solidarte</Logo>
+                </ButtonLogo>
+              ) : (
+                  <Logo>Solidarte</Logo>
+                )}
+            </>
+          )}
       </Container>
     );
   }
