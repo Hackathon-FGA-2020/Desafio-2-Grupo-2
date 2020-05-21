@@ -4,11 +4,12 @@ import styled from 'styled-components/native';
 
 const width = Math.round(Dimensions.get('window').width);
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
   flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
+  padding: 50px 30px;
+  margin: 50px 0 20px;
   background: #eee;
 `;
 

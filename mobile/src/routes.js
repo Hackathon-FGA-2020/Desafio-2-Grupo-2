@@ -8,6 +8,9 @@ import Header from './components/Header';
 import CampaignDetails from './pages/CampaignDetails';
 import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
+import ChooseUserType from './pages/ChooseUserType';
+import Profile from './pages/Profile';
+import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
@@ -32,21 +35,28 @@ function CampaignScreens() {
 }
 
 function ProfileScreens() {
-  const signed = true;
+  const signed = useSelector((state) => state.auth.signed);
   return (
     <Stack.Navigator
-      initialRouteName={signed ? 'SignIn' : 'Profile'}
+      initialRouteName={signed ? 'Sign' : 'Profile'}
       screenOptions={{
         cardStyle: {
           backgroundColor: '#eee',
         },
         header: () => (
-          <Header title="" initialRoute={signed ? 'SignIn' : 'Profile'} />
+          <Header title="" initialRoute={signed ? 'Sign' : 'Profile'} />
         ),
       }}>
-      <Stack.Screen name="Profile" component={Campaigns} />
-      <Stack.Screen name="SignIn" component={SignIn} />
-      <Stack.Screen name="SignUp" component={SignUp} />
+      {signed ? (
+        <>
+          <Stack.Screen name="Sign" component={Sign} />
+          <Stack.Screen name="ChooseUserType" component={ChooseUserType} />
+          <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+        </>
+      ) : (
+          <Stack.Screen name="Profile" component={Profile} />
+        )}
     </Stack.Navigator>
   );
 }

@@ -14,6 +14,7 @@ import {
   Logo,
   SubTextButton,
 } from '../_layouts/auth/styles';
+import Footer from '~/components/Footer';
 import TextInput from '~/components/Input';
 import { signInRequest } from '~/store/modules/auth/actions';
 
@@ -54,6 +55,7 @@ export default function SignIn() {
           <TextButton>Vamos lá</TextButton>
         </Button>
       </FormContainer>
+      <Footer />
     </Container>
   );
 }

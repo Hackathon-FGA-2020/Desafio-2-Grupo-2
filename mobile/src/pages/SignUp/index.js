@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useRef, useState } from 'react';
@@ -26,6 +26,9 @@ import { signUpRequest } from '~/store/modules/auth/actions';
 export default function SignIn() {
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
+  const { params } = useRoute();
+  const { userType } = params;
+
   const [file, setFile] = useState(null);
 
   const formRef = useRef(null);
@@ -38,7 +41,6 @@ export default function SignIn() {
         'A imagem é obrigatória no cadastro, para a sua segurança'
       );
     } else {
-      const userType = 'donator';
       dispatch(signUpRequest(file, name, email, password, userType));
     }
   }

@@ -3,8 +3,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { View } from 'react-native';
 
-import { Wrapper, Logo, Title } from './styles';
+import { Wrapper, WrapperSign, ButtonGoBack, Logo, Title } from './styles';
 
 export default function Header({ title, initialRoute }) {
   const navigation = useNavigation();
@@ -14,25 +15,35 @@ export default function Header({ title, initialRoute }) {
     navigation.goBack();
   }
 
+  function Container({ children }) {
+    return (
+      <>
+        {initialRoute === 'Sign' ? (
+          <WrapperSign>{children}</WrapperSign>
+        ) : (
+            <Wrapper>{children}</Wrapper>
+          )}
+      </>
+    );
+  }
+
   function HomeHeader() {
     return (
-      <Wrapper>
+      <Container>
         {title ? <Title>{title}</Title> : <Logo>Solidarte</Logo>}
-      </Wrapper>
+      </Container>
     );
   }
 
   function OthersHeader() {
     return (
-      <Wrapper>
-        <Ionicons
-          name="ios-arrow-back"
-          onPress={navigateToBack}
-          size={30}
-          color="#448FB3"
-        />
+      <Container>
+        <ButtonGoBack onPress={navigateToBack}>
+          <Ionicons name="ios-arrow-back" size={30} color="#448FB3" />
+        </ButtonGoBack>
         {title ? <Title>{title}</Title> : <Logo>Solidarte</Logo>}
-      </Wrapper>
+        <ButtonGoBack />
+      </Container>
     );
   }
 
