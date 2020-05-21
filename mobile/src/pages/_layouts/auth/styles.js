@@ -29,7 +29,7 @@ export const Label = styled.Text`
 `;
 
 export const Title = styled.Text`
-  margin: 15px auto 20px;
+  margin: 0px auto 20px;
   text-align: center;
   font-size: 26px;
   color: #121212;

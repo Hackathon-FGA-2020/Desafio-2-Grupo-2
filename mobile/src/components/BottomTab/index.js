@@ -10,38 +10,40 @@ import { Wrapper, Container, MainButton, SideButton } from './styles';
 export default function BottomTab({ navigation, ...rest }) {
   const { navigate } = navigation;
   const { state } = rest;
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  // const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
   const initialRouteName = state.routeNames.find(
     (name, index) => index === state.index
   );
   const [route, setRoute] = useState(initialRouteName);
+
   function navigateTo(routeFather, routeName) {
     navigate(routeFather, { screen: routeName });
     setRoute(routeFather);
   }
 
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true); // or some other action
-      }
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false); // or some other action
-      }
-    );
+  // useEffect(() => {
+  //   const keyboardDidShowListener = Keyboard.addListener(
+  //     'keyboardDidShow',
+  //     () => {
+  //       setKeyboardVisible(true); // or some other action
+  //     }
+  //   );
+  //   const keyboardDidHideListener = Keyboard.addListener(
+  //     'keyboardDidHide',
+  //     () => {
+  //       setKeyboardVisible(false); // or some other action
+  //     }
+  //   );
 
-    return () => {
-      keyboardDidHideListener.remove();
-      keyboardDidShowListener.remove();
-    };
-  }, []);
+  //   return () => {
+  //     keyboardDidHideListener.remove();
+  //     keyboardDidShowListener.remove();
+  //   };
+  // }, []);
 
   return (
-    <Wrapper isKeyboardVisible={isKeyboardVisible}>
+    <Wrapper>
       <Container>
         <SideButton onPress={() => navigateTo('User')}>
           <MaterialCommunityIcons

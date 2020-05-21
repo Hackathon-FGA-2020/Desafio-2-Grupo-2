@@ -8,8 +8,8 @@ export const Wrapper = styled.View`
   flex: 1;
   align-items: center;
   justify-content: space-between;
-  padding: ${Constants.statusBarHeight + 10}px 25px 0;
-  margin-bottom: 40px;
+  padding: ${Constants.statusBarHeight}px 25px 0;
+  margin-bottom: 30px;
 `;
 
 export const WrapperSign = styled.View`
