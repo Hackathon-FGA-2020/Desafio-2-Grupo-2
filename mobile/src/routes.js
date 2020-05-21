@@ -7,7 +7,9 @@ import Header from './components/Header';
 import CampaignDetails from './pages/CampaignDetails';
 import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
-import HomePage from './pages/HomePage';
+import Delivery from './pages/Delivery';
+import SignIn from './pages/SignIn';
+// import HomePage from './pages/HomePage';
 import SignIn from './pages/SignIn';
 import ChatDetails from './pages/ChatDetails';
 
@@ -27,6 +29,7 @@ function CampaignScreens() {
       }}>
       <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
+      <Stack.Screen name="Delivery" component={Delivery} />
     </Stack.Navigator>
   );
 }
