@@ -25,6 +25,16 @@ function CampaignScreens() {
   );
 }
 
+function ChatScreens() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Chat"
+      screenOptions={{ header: () => <Header initialRoute="Chat" title="Mensagens"/> }}>
+      <Stack.Screen name="Chat" component={Chat} />
+    </Stack.Navigator>
+  );
+}
+
 export default function Routes() {
   return (
     <Tab.Navigator
@@ -32,7 +42,7 @@ export default function Routes() {
       tabBar={(props) => <BottomTab {...props} />}>
       <Tab.Screen name="SignIn" component={SignIn} />
       <Tab.Screen name="Dashboard" component={CampaignScreens} />
-      <Tab.Screen name="Chat" component={Chat} />
+      <Tab.Screen name="Chat" component={ChatScreens} />
     </Tab.Navigator>
   );
 }
