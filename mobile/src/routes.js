@@ -15,6 +15,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Delivery from './pages/Delivery';
 import ChatDetails from './pages/ChatDetails';
+import About from './pages/About';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,6 +34,7 @@ function CampaignScreens() {
       <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
       <Stack.Screen name="Delivery" component={Delivery} />
+      <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
 }

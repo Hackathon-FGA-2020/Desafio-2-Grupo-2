@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { View } from 'react-native';
 
-import { Wrapper, WrapperSign, ButtonGoBack, Logo, Title } from './styles';
+import { Wrapper, WrapperSign, ButtonGoBack, ButtonLogo, Logo, Title } from './styles';
 
 export default function Header({ title, initialRoute }) {
   const navigation = useNavigation();
@@ -13,6 +13,9 @@ export default function Header({ title, initialRoute }) {
   console.tron.log(route);
   function navigateToBack() {
     navigation.goBack();
+  }
+  function navigateToAbout() {
+    navigation.navigate('About');
   }
 
   function Container({ children }) {
@@ -30,7 +33,7 @@ export default function Header({ title, initialRoute }) {
   function HomeHeader() {
     return (
       <Container>
-        {title ? <Title>{title}</Title> : <Logo>Solidarte</Logo>}
+        {title ? <Title>{title}</Title> : <ButtonLogo onPress={navigateToAbout}><Logo>Solidarte</Logo></ButtonLogo>}
       </Container>
     );
   }
