@@ -8,7 +8,7 @@ class DonationController {
   async index(req, res) {
     const campaigns = await Donation.findAll({
       // Depois que a entrega for realizada, deve atualizar o closed para true
-      where: { pending_delivery: true, closed: false },
+      where: { donor_id: req.userId },
       order: ['updated_at'],
 
       include: [
