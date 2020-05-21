@@ -1,7 +1,6 @@
 import { Form } from '@unform/mobile';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useRef, useState } from 'react';
-import { FlatList } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import {
