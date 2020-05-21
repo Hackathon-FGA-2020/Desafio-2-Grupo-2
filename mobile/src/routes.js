@@ -7,8 +7,8 @@ import Header from './components/Header';
 import CampaignDetails from './pages/CampaignDetails';
 import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
-import SignIn from './pages/SignIn';
 import HomePage from './pages/HomePage';
+import SignIn from './pages/SignIn';
 import ChatDetails from './pages/ChatDetails';
 
 const Tab = createBottomTabNavigator();
@@ -19,7 +19,12 @@ function CampaignScreens() {
   return (
     <Stack.Navigator
       initialRouteName="Campaigns"
-      screenOptions={{ header: () => <Header initialRoute="Campaigns" /> }}>
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: '#eee',
+        },
+        header: () => <Header title="" initialRoute="Campaigns" />,
+      }}>
       <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
     </Stack.Navigator>

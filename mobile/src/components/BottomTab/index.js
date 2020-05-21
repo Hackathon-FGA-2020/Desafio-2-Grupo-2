@@ -32,7 +32,9 @@ export default function BottomTab({ navigation, ...rest }) {
           <Ionicons
             name="ios-star"
             size={28}
-            color={route === 'Dashboard' ? '#061C57' : '#fff'}
+            color={
+              route === 'Dashboard' ? '#061C57' : 'rgba(255, 255, 255, 0.6)'
+            }
           />
         </MainButton>
         <SideButton onPress={() => navigateTo('Chat')}>
