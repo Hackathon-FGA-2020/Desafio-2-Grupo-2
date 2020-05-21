@@ -67,8 +67,6 @@ class ChatHandler {
 			socket.on('message', (data) => {
 				const fail = false;
 				for(var receiver of data.receiver){
-					const user = User.findByPk(receiver);
-					console.log(user);
 					User.findByPk(receiver).then(user => {
 						if(user) {
 							//user is online
