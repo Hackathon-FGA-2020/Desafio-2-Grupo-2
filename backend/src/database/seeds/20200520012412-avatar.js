@@ -21,6 +21,48 @@ module.exports = {
           created_at: new Date(),
           updated_at: new Date(),
         },
+        {
+          name: 'vicentinho.png',
+          path: 'gdfgd23423dfgdfghf',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'richardinho.png',
+          path: 'gdfgdfgdsfdsgghhfghf',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'robsonzinho.png',
+          path: 'gdfgdgfdgdfghf',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'lucaszinho.png',
+          path: 'gdf423423dfghf',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'henriquinho.png',
+          path: 'gdfgsdfdsgfhf',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'italinho.png',
+          path: 'gdjhgfrhffgdfghf',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'vinicinho.png',
+          path: 'gd324523gdfghf',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
       ],
       {}
     ),
