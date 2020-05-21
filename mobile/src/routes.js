@@ -13,6 +13,8 @@ import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Delivery from './pages/Delivery';
+import ChatDetails from './pages/ChatDetails';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +32,18 @@ function CampaignScreens() {
       }}>
       <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
+      <Stack.Screen name="Delivery" component={Delivery} />
+    </Stack.Navigator>
+  );
+}
+
+function ChatScreens() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Chat"
+      screenOptions={{ header: () => <Header initialRoute="Chat" title="Mensagens"/> }}>
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="ChatDetails" component={ChatDetails} />
     </Stack.Navigator>
   );
 }
@@ -38,16 +52,16 @@ function ProfileScreens() {
   const signed = useSelector((state) => state.auth.signed);
   return (
     <Stack.Navigator
-      initialRouteName={signed ? 'Sign' : 'Profile'}
+      initialRouteName={!signed ? 'Sign' : 'Profile'}
       screenOptions={{
         cardStyle: {
           backgroundColor: '#eee',
         },
         header: () => (
-          <Header title="" initialRoute={signed ? 'Sign' : 'Profile'} />
+          <Header title="" initialRoute={!signed ? 'Sign' : 'Profile'} />
         ),
       }}>
-      {signed ? (
+      {!signed ? (
         <>
           <Stack.Screen name="Sign" component={Sign} />
           <Stack.Screen name="ChooseUserType" component={ChooseUserType} />
@@ -68,7 +82,7 @@ export default function Routes() {
       tabBar={(props) => <BottomTab {...props} />}>
       <Tab.Screen name="User" component={ProfileScreens} />
       <Tab.Screen name="Dashboard" component={CampaignScreens} />
-      <Tab.Screen name="Chat" component={Chat} />
+      <Tab.Screen name="Chat" component={ChatScreens} />
     </Tab.Navigator>
   );
 }
