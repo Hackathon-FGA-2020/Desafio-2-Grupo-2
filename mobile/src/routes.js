@@ -9,6 +9,7 @@ import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
 import HomePage from './pages/HomePage';
 import SignIn from './pages/SignIn';
+import ChatDetails from './pages/ChatDetails';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +31,17 @@ function CampaignScreens() {
   );
 }
 
+function ChatScreens() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Chat"
+      screenOptions={{ header: () => <Header initialRoute="Chat" title="Mensagens"/> }}>
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="ChatDetails" component={ChatDetails} />
+    </Stack.Navigator>
+  );
+}
+
 export default function Routes() {
   return (
     <Tab.Navigator
@@ -37,7 +49,7 @@ export default function Routes() {
       tabBar={(props) => <BottomTab {...props} />}>
       <Tab.Screen name="SignIn" component={SignIn} />
       <Tab.Screen name="Dashboard" component={CampaignScreens} />
-      <Tab.Screen name="Chat" component={Chat} />
+      <Tab.Screen name="Chat" component={ChatScreens} />
     </Tab.Navigator>
   );
 }
