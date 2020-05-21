@@ -50,10 +50,13 @@ export const Logo = styled.Image`
 
 export const Button = styled.TouchableOpacity`
   margin: 30px auto 20px;
-  padding: 5px 30px;
+  padding: ${(props) => (props.loading ? '10' : '5')}px
+    ${(props) => (props.loading ? '10' : '30')}px;
   background: #448fb3;
   border: 1.5px solid ${lighten(0.1, '#448fb3')};
   border-radius: 30px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const TextButton = styled.Text`

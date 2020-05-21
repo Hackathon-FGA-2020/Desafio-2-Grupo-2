@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { ActivityIndicator } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 import {
@@ -20,6 +21,8 @@ import TextInput from '~/components/Input';
 import { signInRequest } from '~/store/modules/auth/actions';
 
 export default function SignIn() {
+  const loading = useSelector((state) => state.auth.loading);
+
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
 
@@ -41,7 +44,7 @@ export default function SignIn() {
         }
       );
 
-      dispatch(signInRequest(data.email, data.password));
+      dispatch(signInRequest(email, password));
     } catch (err) {
       const validationErrors = {};
 
@@ -71,8 +74,12 @@ export default function SignIn() {
           <Label>Senha</Label>
           <TextInput name="password" secureTextEntry />
         </Form>
-        <Button onPress={() => formRef.current.submitForm()}>
-          <TextButton>Vamos lá</TextButton>
+        <Button loading={loading} onPress={() => formRef.current.submitForm()}>
+          {loading ? (
+            <ActivityIndicator size="small" color="#eee" />
+          ) : (
+              <TextButton>Vamos lá</TextButton>
+            )}
         </Button>
       </FormContainer>
       <Footer />
