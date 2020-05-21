@@ -10,6 +10,8 @@ import Chat from './pages/Chat';
 import Delivery from './pages/Delivery';
 import SignIn from './pages/SignIn';
 // import HomePage from './pages/HomePage';
+import SignIn from './pages/SignIn';
+import ChatDetails from './pages/ChatDetails';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,11 +20,27 @@ const Stack = createStackNavigator();
 function CampaignScreens() {
   return (
     <Stack.Navigator
-      initialRouteName="Delivery"
-      screenOptions={{ header: () => <Header initialRoute="Delivery" /> }}>
+      initialRouteName="Campaigns"
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: '#eee',
+        },
+        header: () => <Header title="" initialRoute="Campaigns" />,
+      }}>
       <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
       <Stack.Screen name="Delivery" component={Delivery} />
+    </Stack.Navigator>
+  );
+}
+
+function ChatScreens() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Chat"
+      screenOptions={{ header: () => <Header initialRoute="Chat" title="Mensagens"/> }}>
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="ChatDetails" component={ChatDetails} />
     </Stack.Navigator>
   );
 }
@@ -34,7 +52,7 @@ export default function Routes() {
       tabBar={(props) => <BottomTab {...props} />}>
       <Tab.Screen name="SignIn" component={SignIn} />
       <Tab.Screen name="Dashboard" component={CampaignScreens} />
-      <Tab.Screen name="Chat" component={Chat} />
+      <Tab.Screen name="Chat" component={ChatScreens} />
     </Tab.Navigator>
   );
 }

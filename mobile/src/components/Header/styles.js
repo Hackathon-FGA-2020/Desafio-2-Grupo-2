@@ -7,8 +7,8 @@ export const Wrapper = styled.View`
   flex: 1;
   align-items: center;
   justify-content: space-between;
-  padding: ${Constants.statusBarHeight + 10}px 25px;
-  margin-bottom: 10px;
+  padding: ${Constants.statusBarHeight + 10}px 25px 0;
+  margin-bottom: 40px;
 `;
 
 export const Logo = styled.Text`
