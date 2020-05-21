@@ -7,8 +7,9 @@ import Header from './components/Header';
 import CampaignDetails from './pages/CampaignDetails';
 import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
+import Delivery from './pages/Delivery';
 import SignIn from './pages/SignIn';
-import HomePage from './pages/HomePage';
+// import HomePage from './pages/HomePage';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,10 +18,11 @@ const Stack = createStackNavigator();
 function CampaignScreens() {
   return (
     <Stack.Navigator
-      initialRouteName="Campaigns"
-      screenOptions={{ header: () => <Header initialRoute="Campaigns" /> }}>
+      initialRouteName="Delivery"
+      screenOptions={{ header: () => <Header initialRoute="Delivery" /> }}>
       <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
+      <Stack.Screen name="Delivery" component={Delivery} />
     </Stack.Navigator>
   );
 }
