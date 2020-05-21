@@ -59,6 +59,7 @@ export const CreateButton = styled(RectButton)`
   background: #1671a7;
   align-items: center;
   justify-content: center;
+  height: 60px;
   margin: 0 25%;
   padding: 10px;
   border-radius: 30px;
