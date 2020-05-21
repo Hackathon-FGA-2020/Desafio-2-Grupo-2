@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Profiles from './pages/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -73,8 +74,8 @@ function ProfileScreens() {
           <Stack.Screen name="SignUp" component={SignUp} />
         </>
       ) : (
-          <Stack.Screen name="Profile" component={Profile} />
-        )}
+        <Stack.Screen name="Profile" component={Profile} />
+      )}
     </Stack.Navigator>
   );
 }
