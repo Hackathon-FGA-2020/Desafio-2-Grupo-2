@@ -27,7 +27,17 @@ class CampaignController {
       ],
     });
 
-    return res.json(campaigns);
+    const files = await CampaignFile.findAll({
+      where: { proprietary: campaigns.map(campaign => campaign.id) }
+    })
+
+    const CampaignsWithFile = campaigns.map(
+      ({ id, name, description, tags, updateAt, campaignCreator }) => {
+        const file = files.find(file => file.proprietary === id);
+        return { id, name, description, tags, updateAt, campaignCreator, file };
+      });
+
+    return res.json(CampaignsWithFile);
   }
 
   async store(req, res) {
