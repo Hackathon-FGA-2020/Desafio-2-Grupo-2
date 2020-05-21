@@ -32,15 +32,20 @@ export const ChatDetails = styled.View`
 
 export const ChatName = styled.Text`
   color: black;
-  font-size: 14px;
+  font-size: 18px;
+  font-family: ChampagneBold;
 `;
 
 export const ChatUsers = styled.Text`
-  color: grey;
-  font-size: 14px;
+  color: black;
+  font-size: 16px;
+  font-family: Champagne;
 `;
 
 export const ChatDate = styled.Text`
+  font-size: 16px;
   color: black;
   margin: 0 0 0 auto;
+  color: grey;
+  font-family: Champagne;
 `;
