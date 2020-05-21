@@ -85,7 +85,7 @@ export default function Chat() {
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item, index }) => (
           <>
-            <ChatItem>
+            <ChatItem onPress={() => navigateToChat(item.id)}>
               <ChatImage source={item.file} />
               <ChatDetails>
                 <ChatName>{item.name}</ChatName>

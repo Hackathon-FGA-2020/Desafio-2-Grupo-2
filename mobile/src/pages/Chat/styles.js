@@ -5,7 +5,7 @@ export const Container = styled.KeyboardAvoidingView`
   flex: 1;
 `;
 
-export const ChatItem = styled.View`
+export const ChatItem = styled.TouchableOpacity`
   padding: 8px;
   background: rgba(40, 93, 118, 0.12);
   flex-direction: row;
