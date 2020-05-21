@@ -34,6 +34,8 @@ export const ButtonGoBack = styled(RectButton)`
   margin: 0;
 `;
 
+export const ButtonLogo = styled(RectButton)``;
+
 export const Logo = styled.Text`
   font-size: 32px;
   font-family: Champagne;
