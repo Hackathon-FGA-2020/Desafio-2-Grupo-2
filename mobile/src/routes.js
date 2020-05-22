@@ -21,6 +21,9 @@ import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import MyCampaigns from './pages/MyCampaigns';
+import HomePage from './pages/HomePage';
+import ChatInfo from './pages/ChatInfo';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();

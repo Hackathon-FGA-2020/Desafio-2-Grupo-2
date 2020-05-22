@@ -27,8 +27,9 @@ export const SubContainer = styled.View`
 export const Title = styled.Text`
   font-family: 'Champagne';
   color: black;
-  font-size: 25;
+  font-size: 20;
   text-align: right;
+  margin: 0 0 16px 0;
 `;
 
 export const User = styled.View`
@@ -46,16 +47,18 @@ export const Avatar = styled.Image`
 
 export const Details = styled.View``;
 
+
 export const Name = styled.Text`
-  font-family: 'Champagne';
-  color: black;
+  margin: 0 0 12px 0;
+  font-family: 'ChampagneBold';
+  color: grey;
   font-size: 20;
 `;
 
 export const Description = styled.Text`
   font-family: 'Champagne';
-  color: #aaa;
-  font-size: 15;
+  color: grey;
+  font-size: 16;
 `;
 
 export const GetOut = styled.View`

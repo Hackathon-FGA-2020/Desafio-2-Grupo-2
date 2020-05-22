@@ -29,6 +29,8 @@ import {
   ModalTitleText,
   ConfirmarText,
   ModalDescriptionText,
+  CampaignEntity,
+  CampaignDelivery,
 } from './styles';
 import avatar from '~/assets/avatar.png';
 import image from '~/assets/doar.png';
@@ -41,7 +43,9 @@ export default function Campaigns() {
   const deviceWidth = Dimensions.get('window').width;
 
   const campaign = {
-    name: 'Campanha do Agasalho de Igreja AssembleiaCristo é o Senhor',
+    name: 'Campanha do Agasalho',
+    entity: 'Igreja Assembleia Cristo é o Senhor',
+    delivery: 'Ceilândia Norte para Samamabaia',
     location: 'Samambaia - DF',
     tags: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7'],
     file: image,
@@ -107,14 +111,15 @@ export default function Campaigns() {
                 <CampaignImage source={item.file} />
               </ImagesContainer>
               <CampaignTitle>{item.name}</CampaignTitle>
-              <CampaignLocation>{item.location}</CampaignLocation>
+              <CampaignDelivery>{item.delivery}</CampaignDelivery>
+              <CampaignEntity>{item.entity}</CampaignEntity>
               <CampaignTagsContainer>
                 {item.tags.map((tag) => (
                   <CampaignTags key={tag}>{tag}</CampaignTags>
                 ))}
               </CampaignTagsContainer>
               <CampaignMore>
-                <CampaignDate>{item.date}</CampaignDate>
+                <CampaignDate>{item.date}, {item.location}</CampaignDate>
                 <CampaignButton onPress={toggleModal}>
                   <ButtonText>Quero ajudar</ButtonText>
                   <EvilIcons name="heart" size={36} color="#121212" />

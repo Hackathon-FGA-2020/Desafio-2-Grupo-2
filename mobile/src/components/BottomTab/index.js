@@ -56,7 +56,7 @@ export default function BottomTab({ navigation, ...rest }) {
   }
 
   return (
-    <Wrapper isVisible={isVisible()}>
+    <Wrapper isKeyboardVisible={isKeyboardVisible}>
       <Container>
         <SideButton onPress={() => navigateTo('User')}>
           <MaterialCommunityIcons

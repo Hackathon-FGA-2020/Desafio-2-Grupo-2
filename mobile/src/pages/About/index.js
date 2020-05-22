@@ -5,8 +5,9 @@ import {
   Title,
   SubTitle,
   Text,
-  Collaborators,
+  Collaborator,
   AboutContainer,
+  CollaboratorsContainer,
 } from './styles';
 
 export default function About() {
@@ -36,12 +37,14 @@ export default function About() {
           familiar.
         </Text>
         <SubTitle>Colaboradores</SubTitle>
-        <Collaborators>Israel Santos</Collaborators>
-        <Collaborators>João Magalhães</Collaborators>
-        <Collaborators>Matheus Alves</Collaborators>
-        <Collaborators>Richard Viana</Collaborators>
-        <Collaborators>Robson Melo</Collaborators>
-        <Collaborators>Vicente Moraes</Collaborators>
+        <CollaboratorsContainer>
+          <Collaborator>Israel Santos</Collaborator>
+          <Collaborator>João Magalhães</Collaborator>
+          <Collaborator>Matheus Alves</Collaborator>
+          <Collaborator>Richard Viana</Collaborator>
+          <Collaborator>Robson Melo</Collaborator>
+          <Collaborator>Vicente Moraes</Collaborator>
+        </CollaboratorsContainer>
       </AboutContainer>
     </Container>
   );

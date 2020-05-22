@@ -23,7 +23,7 @@ export default function ChatInfo() {
     <Container>
       <Image source={campanha} />
       <SubContainer>
-        <Title> Participantes </Title>
+        <Title> participantes </Title>
 
         <User>
           <Avatar source={avatar} />

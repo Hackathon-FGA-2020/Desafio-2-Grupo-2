@@ -16,6 +16,7 @@ import {
   CampaignDescription,
   CampaignButton,
   CampaignButtonText,
+  CampaignEntity,
 } from './styles';
 import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
@@ -23,6 +24,7 @@ import Footer from '~/components/Footer';
 function CampaignDetails() {
   const campaign = {
     name: 'Campanha do Agasalho de Igreja AssembleiaCristo é o Senhor',
+    entity: 'Assembleia Cristo é o Senhor',
     location: 'Samambaia - DF',
     tags: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7'],
     file: image,
@@ -38,14 +40,14 @@ function CampaignDetails() {
         <DetailsContainer>
           <Header>
             <CampaignTitle>{campaign.name}</CampaignTitle>
-            <CampaignLocation>{campaign.location}</CampaignLocation>
+            <CampaignEntity>{campaign.entity}</CampaignEntity>
             <CampaignTagsContainer>
               {campaign.tags.map((tag) => (
                 <CampaignTags key={tag}>{tag}</CampaignTags>
               ))}
             </CampaignTagsContainer>
           </Header>
-          <CampaignDate>{campaign.date}</CampaignDate>
+          <CampaignDate>{campaign.date}, {campaign.location}</CampaignDate>
           <CampaignDescription>{campaign.description}</CampaignDescription>
           <Footer />
         </DetailsContainer>
