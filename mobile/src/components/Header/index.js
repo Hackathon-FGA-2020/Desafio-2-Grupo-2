@@ -31,8 +31,8 @@ export default function Header({ title, initialRoute }) {
         {route.name === 'Sign' || route.name === 'ChooseUserType' ? (
           <WrapperSign>{children}</WrapperSign>
         ) : (
-            <Wrapper>{children}</Wrapper>
-          )}
+          <Wrapper>{children}</Wrapper>
+        )}
       </>
     );
   }
@@ -43,16 +43,16 @@ export default function Header({ title, initialRoute }) {
         {title ? (
           <Title>{title}</Title>
         ) : (
-            <>
-              {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
-                <ButtonLogo onPress={navigateToAbout}>
-                  <Logo>Solidarte</Logo>
-                </ButtonLogo>
-              ) : (
-                  <Logo>Solidarte</Logo>
-                )}
-            </>
-          )}
+          <>
+            {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
+              <ButtonLogo onPress={navigateToAbout}>
+                <Logo />
+              </ButtonLogo>
+            ) : (
+              <Logo />
+            )}
+          </>
+        )}
       </Container>
     );
   }
@@ -63,7 +63,7 @@ export default function Header({ title, initialRoute }) {
         <ButtonGoBack onPress={navigateToBack}>
           <Ionicons name="ios-arrow-back" size={30} color="#448FB3" />
         </ButtonGoBack>
-        {title ? <Title>{title}</Title> : <Logo>Solidarte</Logo>}
+        {title ? <Title>{title}</Title> : <Logo />}
         <ButtonGoBack />
       </Container>
     );
