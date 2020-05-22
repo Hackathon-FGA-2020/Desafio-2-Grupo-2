@@ -4,7 +4,7 @@ sio = socketio.Client(engineio_logger=True)
 
 @sio.event
 def connect():
-  sio.emit('join', {'userid': '2'})
+  sio.emit('join', {'userid': 2})
 
 @sio.on('message')
 def parse(data):

@@ -10,37 +10,46 @@ class ChatHandler {
 			where: {
 				[Sequelize.Op.or]: [
 					{
-						receiverid: { [Sequelize.Op.like]: `%[${userid},%` }
+						channel: { [Sequelize.Op.like]: `%[${userid},%` }
 					},
 					{
-						receiverid: { [Sequelize.Op.like]: `%,${userid},%` }
+						channel: { [Sequelize.Op.like]: `%,${userid},%` }
 					},
 					{
-						receiverid: { [Sequelize.Op.like]: `%,${userid}]%` }
+						channel: { [Sequelize.Op.like]: `%,${userid}]%` }
 						
-					},
-					{
-						receiverid: { [Sequelize.Op.like]: `[${userid}]`}
-					},
-					{
-					senderid: userid
 					},
 				]
 			},
 			limit: chatLimit,
 			offset: chatLimit * scroll
 		});
-		if(chat.length > 0)
-			socket.emit('history', chat);
+		if(chat.length > 0){
+			const channels = {};
+			for(var pivot of chat){
+				if(!channels.hasOwnProperty(pivot.channel)){
+					var chn = pivot.channel;
+					channels[chn] = [];
+					for(var msg of chat){
+						if(msg.channel == chn)
+							channels[chn].push(msg);
+					}
+				}
+			}
+			socket.emit('history', channels);
+		}
 		else
 			socket.emit('empty');
 	}
 	
 	async store(message, sender, receiver){
+		const channel = receiver.slice();
+		channel.push(sender);
 		const chat = await Chat.create({
 			senderid: sender,
 			receiverid: JSON.stringify(receiver),
-			message: message
+			message: message,
+			channel: JSON.stringify(channel)
 		});
 	}
 
