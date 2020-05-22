@@ -13,6 +13,7 @@ import {
   CampaignTags,
   CampaignTagsContainer,
   ButtonGoBack,
+  ChatMore,
 } from './styles';
 import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
@@ -59,17 +60,17 @@ export default function Campaign() {
                 <CampaignTagsContainer>
                   {item.tags.map((tag, index) => (
                     <>
-                    {index < 2 && <CampaignTags key={tag}>{tag}</CampaignTags>}
+                      {index < 2 && <CampaignTags key={tag}>{tag}</CampaignTags>}
                     </>
                   ))}
                 </CampaignTagsContainer>
               </ChatDetails>
-              <ChatDetails>
+              <ChatMore>
                 <ButtonGoBack onPress={navigateToBack}>
                   <Ionicons name="md-more" size={30} color="#448FB3" />
                 </ButtonGoBack>
                 <ChatDate>{item.date}</ChatDate>
-              </ChatDetails>
+              </ChatMore>
             </ChatItem>
             {index === campaigns.length - 1 && <Footer />}
           </>

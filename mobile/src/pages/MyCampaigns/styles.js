@@ -28,7 +28,11 @@ export const ChatImage = styled.Image`
 `;
 
 export const ChatDetails = styled.View`
-  width: 76%;
+  max-width: 67%;
+`;
+
+export const ChatMore = styled.View`
+  align-items: flex-end;
 `;
 
 export const ChatName = styled.Text`
@@ -41,7 +45,7 @@ export const ChatName = styled.Text`
 export const ChatDate = styled.Text`
   font-size: 16px;
   color: black;
-  margin: auto auto 0 0;
+  margin: auto 0 0 0;
   color: grey;
   font-family: Champagne;
 `;
