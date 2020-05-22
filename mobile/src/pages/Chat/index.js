@@ -88,8 +88,8 @@ export default function Chat() {
             <ChatItem onPress={() => navigateToChat(item.id)}>
               <ChatImage source={item.file} />
               <ChatDetails>
-                <ChatName>{item.name}</ChatName>
-                <ChatUsers>{item.entity}</ChatUsers>
+                <ChatName numberOfLines={1}>{item.name}</ChatName>
+                <ChatUsers numberOfLines={1}>{item.entity}</ChatUsers>
                 <ChatDate>{item.date}</ChatDate>
               </ChatDetails>
             </ChatItem>
