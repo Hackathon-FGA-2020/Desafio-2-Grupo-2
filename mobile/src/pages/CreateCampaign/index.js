@@ -18,6 +18,7 @@ import {
   UploadAvatarButton,
   UploadAvatarText,
   Title,
+  Image,
 } from '~/pages/_layouts/campaignsInputs/styles';
 import { createCampaignRequest } from '~/store/modules/campaign/actions';
 
@@ -114,6 +115,7 @@ export default function CreateCampaign() {
             <UploadAvatarText>Enviar</UploadAvatarText>
           </UploadAvatarButton>
           {errorImage && <ErrorText>{errorImage.message}</ErrorText>}
+          {file && <Image source={{ uri: file.uri }} />}
           <CreateButton onPress={() => formRef.current.submitForm()}>
             <CreateButtonText>Criar</CreateButtonText>
           </CreateButton>

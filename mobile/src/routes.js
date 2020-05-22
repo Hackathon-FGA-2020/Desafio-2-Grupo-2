@@ -34,7 +34,7 @@ function CampaignScreens() {
         },
         header: () => <Header title="" initialRoute="Campaigns" />,
       }}>
-      <Stack.Screen name="Campaigns" component={EditCampaign} />
+      <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
       <Stack.Screen name="Delivery" component={Delivery} />
       <Stack.Screen name="About" component={About} />
