@@ -33,7 +33,7 @@ function CampaignScreens() {
         },
         header: () => <Header title="" initialRoute="Campaigns" />,
       }}>
-      <Stack.Screen name="Campaigns" component={EditCampaign} />
+      <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
       <Stack.Screen name="Delivery" component={Delivery} />
       <Stack.Screen name="About" component={About} />
@@ -75,8 +75,8 @@ function ProfileScreens() {
           <Stack.Screen name="SignUp" component={SignUp} />
         </>
       ) : (
-        <Stack.Screen name="Profile" component={Profile} />
-      )}
+          <Stack.Screen name="Profile" component={Profile} />
+        )}
     </Stack.Navigator>
   );
 }

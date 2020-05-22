@@ -5,7 +5,7 @@ import express from 'express';
 import 'express-async-errors';
 import path from 'path';
 import ChatHandler from './app/chat/ChatHandler'
-
+import cors from 'cors';
 import routes from './routes';
 
 import './database';
@@ -28,6 +28,7 @@ class App {
       '/files',
       express.static(path.resolve(__dirname, '..', 'uploads'))
     );
+    this.server.use(cors());
   }
 
   routes() {

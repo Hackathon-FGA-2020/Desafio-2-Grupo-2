@@ -59,7 +59,7 @@ export const CreateButton = styled(RectButton)`
   background: #1671a7;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: 50px;
   margin: 0 25%;
   padding: 10px;
   border-radius: 30px;
@@ -68,7 +68,14 @@ export const CreateButton = styled(RectButton)`
 
 export const CreateButtonText = styled.Text`
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   font-family: ChampagneBold;
   letter-spacing: 0.6px;
+`;
+
+export const Image = styled.Image`
+  width: 100px;
+  height: 100px;
+  margin: 5px auto;
+  border-radius: 4px;
 `;
