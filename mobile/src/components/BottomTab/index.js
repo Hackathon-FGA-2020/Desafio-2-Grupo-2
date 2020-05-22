@@ -43,7 +43,7 @@ export default function BottomTab({ navigation, ...rest }) {
   }, []);
 
   return (
-    <Wrapper isKeyboardVisible={isKeyboardVisible} isChatDetails={state}>
+    <Wrapper isKeyboardVisible={isKeyboardVisible}>
       <Container>
         <SideButton onPress={() => navigateTo('User')}>
           <MaterialCommunityIcons

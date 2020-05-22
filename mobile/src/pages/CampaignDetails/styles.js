@@ -35,7 +35,16 @@ export const CampaignContainer = styled.ScrollView`
 export const CampaignTitle = styled.Text`
   padding: 0 20px;
   margin: 10px 0 5px;
-  font-size: 20px;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  font-family: Champagne;
+  text-align: center;
+`;
+
+export const CampaignEntity = styled.Text`
+  padding: 0 20px;
+  margin: 0 0 5px;
+  font-size: 16px;
   letter-spacing: 0.5px;
   font-family: Champagne;
   text-align: center;
@@ -50,9 +59,7 @@ export const CampaignLocation = styled.Text`
 `;
 
 export const CampaignTagsContainer = styled.View`
-  max-width: 90%;
   padding: 0 10px;
-
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -81,7 +88,7 @@ export const CampaignDescription = styled.Text`
   color: #121212;
   margin: 10px 30px 32px;
   padding-bottom: 32px;
-  text-align: center;
+  text-align: justify;
   letter-spacing: 0.3px;
   line-height: 22px;
 `;

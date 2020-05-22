@@ -18,8 +18,8 @@ export const Container = styled.View`
 
 export const ProfileContainer = styled.View`
   width: 90%;
-  padding: 70px 70px 30px;
-  margin-top: 100px;
+  padding: 70px 20px 30px;
+  margin-top: 150px;
   border-radius: 20px;
   min-height: 50%;
   background: rgba(68, 143, 179, 0.15);
@@ -36,9 +36,8 @@ export const TextButton = styled.Text`
   color: #eee;
 `;
 export const ProfileTitle = styled.Text`
-  padding: 0 20px;
-  margin: 10px 0 5px;
-  font-size: 40px;
+  margin: 20px 0 5px;
+  font-size: 32px;
   letter-spacing: 0.5px;
   font-family: Champagne;
   text-align: center;
@@ -72,17 +71,19 @@ export const ProfileButtonText = styled.Text`
   font-size: 20px;
   font-family: ChampagneBold;
 `;
+
 export const Logo = styled.Image`
   margin: 0 auto;
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 80px;
   border-color: #fff;
   border-width: 2px;
   position: absolute;
-  top: 20px;
+  top: 80px;
   z-index: 1;
 `;
+
 export const ButtonIcon = styled.TouchableOpacity`
   width: 80px;
   height: 80px;
@@ -116,6 +117,7 @@ export const DonationsAmountContainer = styled.View`
 `;
 
 export const Donation = styled.View`
+  margin-top: 20px;
   justify-content: center;
   align-items: center;
   padding: 0 20px;

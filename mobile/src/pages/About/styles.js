@@ -31,9 +31,13 @@ export const Text = styled.Text`
   font-family: Champagne;
 `;
 
-export const Collaborators = styled.Text`
+export const Collaborator = styled.Text`
   font-size: 20px;
   margin: 0 auto 5px auto;
   color: #074a94;
   font-family: Champagne;
+`;
+
+export const CollaboratorsContainer = styled.View`
+  margin: 0 auto 100px auto;
 `;

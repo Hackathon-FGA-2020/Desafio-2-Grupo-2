@@ -31,7 +31,16 @@ export const CampaignImage = styled.Image`
 export const CampaignTitle = styled.Text`
   padding: 0 20px;
   margin: 10px 0 5px;
-  font-size: 20px;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  font-family: Champagne;
+  text-align: center;
+`;
+
+export const CampaignEntity = styled.Text`
+  padding: 0 20px;
+  margin: 0 0 5px;
+  font-size: 16px;
   letter-spacing: 0.5px;
   font-family: Champagne;
   text-align: center;
@@ -46,9 +55,7 @@ export const CampaignLocation = styled.Text`
 `;
 
 export const CampaignTagsContainer = styled.View`
-  max-width: 90%;
   padding: 0 10px;
-
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -65,6 +72,7 @@ export const CampaignTags = styled.Text`
 `;
 
 export const CampaignDate = styled.Text`
+  max-width: 70%;
   font-family: Champagne;
   font-size: 18px;
 `;

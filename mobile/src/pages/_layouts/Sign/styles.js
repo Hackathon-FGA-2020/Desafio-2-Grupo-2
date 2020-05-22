@@ -2,8 +2,6 @@ import { darken } from 'polished';
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
-import background from '~/assets/detective.png';
-
 export const Container = styled.View`
   flex: 1;
   align-items: center;
@@ -11,15 +9,6 @@ export const Container = styled.View`
 `;
 
 export const SubContainer = styled.View``;
-
-export const BackgroundImage = styled.Image.attrs({
-  source: background,
-  resizeMode: 'cover',
-})`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-`;
 
 export const Title = styled.Text`
   font-family: Champagne;

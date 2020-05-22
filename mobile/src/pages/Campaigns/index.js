@@ -16,6 +16,7 @@ import {
   CampaignMore,
   CampaignButton,
   CampaignContainerButton,
+  CampaignEntity,
 } from './styles';
 import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
@@ -23,9 +24,10 @@ import Footer from '~/components/Footer';
 export default function Campaigns() {
   const navigation = useNavigation();
   const campaign = {
-    name: 'Campanha do Agasalho de Igreja AssembleiaCristo é o Senhor',
+    name: 'Campanha do Agasalho',
+    entity: 'Assembleia Cristo é o Senhor',
     location: 'Samambaia - DF',
-    tags: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7'],
+    tags: ['Cobertores', 'Agasalhos', 'Meias', 'Calçados', 'Calças', 'Moletons', 'Camisetas'],
     file: image,
     date: 'ontem',
   };
@@ -41,7 +43,7 @@ export default function Campaigns() {
   ];
 
   function navigateToCampaign(id) {
-    navigation.navigate('About', { id });
+    navigation.navigate('CampaignDetails', { id });
   }
 
   return (
@@ -57,7 +59,7 @@ export default function Campaigns() {
                 onPress={() => navigateToCampaign(item.id)}>
                 <CampaignImage source={item.file} />
                 <CampaignTitle>{item.name}</CampaignTitle>
-                <CampaignLocation>{item.location}</CampaignLocation>
+                <CampaignEntity>{item.entity}</CampaignEntity>
                 <CampaignTagsContainer>
                   {item.tags.map((tag) => (
                     <CampaignTags key={tag}>{tag}</CampaignTags>
@@ -65,7 +67,7 @@ export default function Campaigns() {
                 </CampaignTagsContainer>
               </CampaignContainerButton>
               <CampaignMore>
-                <CampaignDate>{item.date}</CampaignDate>
+                <CampaignDate>{item.date}, {item.location}</CampaignDate>
                 <CampaignButton>
                   <EvilIcons name="heart" size={36} color="#121212" />
                 </CampaignButton>

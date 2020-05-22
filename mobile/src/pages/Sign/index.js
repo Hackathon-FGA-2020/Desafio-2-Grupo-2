@@ -4,11 +4,14 @@ import React from 'react';
 import {
   Container,
   SubContainer,
-  BackgroundImage,
   Title,
   Button,
   ButtonText,
 } from '~/pages/_layouts/Sign/styles';
+
+import {
+  BackgroundImage,
+} from './styles';
 
 export default function SignIn() {
   const { navigate } = useNavigation();
