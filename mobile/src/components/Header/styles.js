@@ -2,8 +2,11 @@
 import Constants from 'expo-constants';
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
 
 import logo from '~/assets/Nome/Nome.png';
+
+const width = Math.round(Dimensions.get('screen').width);
 
 export const Wrapper = styled.View`
   flex-direction: row;
@@ -40,6 +43,9 @@ export const ButtonGoBack = styled(RectButton)`
 
 export const ButtonLogo = styled(RectButton)`
   margin: 0 auto;
+  width: 114px;
+  position: absolute;
+  left: ${width / 2 - 57}px;
 `;
 
 export const Logo = styled.Image.attrs({
