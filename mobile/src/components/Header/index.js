@@ -22,7 +22,7 @@ export default function Header({ title, initialRoute }) {
     navigation.goBack();
   }
   function navigateToAbout() {
-    navigation.navigate('About');
+    navigation.navigate('MyCampaigns');
   }
 
   function Container({ children }) {
@@ -46,10 +46,10 @@ export default function Header({ title, initialRoute }) {
             <>
               {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
                 <ButtonLogo onPress={navigateToAbout}>
-                  <Logo>Solidarte</Logo>
+                  <Logo>Solidev</Logo>
                 </ButtonLogo>
               ) : (
-                  <Logo>Solidarte</Logo>
+                  <Logo>Solidev</Logo>
                 )}
             </>
           )}
@@ -63,7 +63,7 @@ export default function Header({ title, initialRoute }) {
         <ButtonGoBack onPress={navigateToBack}>
           <Ionicons name="ios-arrow-back" size={30} color="#448FB3" />
         </ButtonGoBack>
-        {title ? <Title>{title}</Title> : <Logo>Solidarte</Logo>}
+        {title ? <Title>{title}</Title> : <Logo>Solidev</Logo>}
         <ButtonGoBack />
       </Container>
     );
