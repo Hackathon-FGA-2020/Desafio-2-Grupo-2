@@ -96,7 +96,7 @@ export const CampaignButton = styled.TouchableOpacity`
   align-self: flex-end;
   position: absolute;
   right: 40px;
-  top: ${screenHeight * 0.79}px;
+  top: ${screenHeight * 0.81}px;
 `;
 
 export const CampaignButtonText = styled.Text`

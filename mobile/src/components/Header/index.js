@@ -1,6 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  useNavigation,
+  useRoute,
+  DrawerActions,
+} from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -11,6 +15,7 @@ import {
   ButtonLogo,
   Logo,
   Title,
+  MenuButton,
 } from './styles';
 
 export default function Header({ title, initialRoute }) {
@@ -25,14 +30,18 @@ export default function Header({ title, initialRoute }) {
     navigation.navigate('MyCampaigns');
   }
 
+  function toggleMenu() {
+    navigation.dispatch(DrawerActions.toggleDrawer());
+  }
+
   function Container({ children }) {
     return (
       <>
         {route.name === 'Sign' || route.name === 'ChooseUserType' ? (
           <WrapperSign>{children}</WrapperSign>
         ) : (
-            <Wrapper>{children}</Wrapper>
-          )}
+          <Wrapper>{children}</Wrapper>
+        )}
       </>
     );
   }
@@ -43,16 +52,16 @@ export default function Header({ title, initialRoute }) {
         {title ? (
           <Title>{title}</Title>
         ) : (
-            <>
-              {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
-                <ButtonLogo onPress={navigateToAbout}>
-                  <Logo>Solidev</Logo>
-                </ButtonLogo>
-              ) : (
-                  <Logo>Solidev</Logo>
-                )}
-            </>
-          )}
+          <>
+            {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
+              <ButtonLogo onPress={navigateToAbout}>
+                <Logo />
+              </ButtonLogo>
+            ) : (
+              <Logo />
+            )}
+          </>
+        )}
       </Container>
     );
   }
@@ -63,8 +72,10 @@ export default function Header({ title, initialRoute }) {
         <ButtonGoBack onPress={navigateToBack}>
           <Ionicons name="ios-arrow-back" size={30} color="#448FB3" />
         </ButtonGoBack>
-        {title ? <Title>{title}</Title> : <Logo>Solidev</Logo>}
-        <ButtonGoBack />
+        {title ? <Title>{title}</Title> : <Logo />}
+        <MenuButton onPress={toggleMenu}>
+          <Ionicons name="ios-menu" size={30} color="#fff" />
+        </MenuButton>
       </Container>
     );
   }
