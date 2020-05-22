@@ -27,7 +27,7 @@ export default function Header({ title, initialRoute }) {
     navigation.goBack();
   }
   function navigateToAbout() {
-    navigation.navigate('About');
+    navigation.navigate('MyCampaigns');
   }
 
   function toggleMenu() {
@@ -69,11 +69,13 @@ export default function Header({ title, initialRoute }) {
   function OthersHeader() {
     return (
       <Container>
+        <ButtonGoBack onPress={navigateToBack}>
+          <Ionicons name="ios-arrow-back" size={30} color="#448FB3" />
+        </ButtonGoBack>
+        {title ? <Title>{title}</Title> : <Logo />}
         <MenuButton onPress={toggleMenu}>
           <Ionicons name="ios-menu" size={30} color="#fff" />
         </MenuButton>
-        {title ? <Title>{title}</Title> : <Logo />}
-        <ButtonGoBack />
       </Container>
     );
   }

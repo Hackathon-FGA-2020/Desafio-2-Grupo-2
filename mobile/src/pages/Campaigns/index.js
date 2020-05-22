@@ -41,7 +41,7 @@ export default function Campaigns() {
   ];
 
   function navigateToCampaign(id) {
-    navigation.navigate('CampaignDetails', { id });
+    navigation.navigate('About', { id });
   }
 
   return (
