@@ -1,6 +1,8 @@
-import Chat from '../models/Chat'
-import User from '../models/User'
-import Sequelize from 'sequelize'
+import Chat from '../models/Chat';
+import User from '../models/User';
+import Sequelize from 'sequelize';
+import Campaign from '../models/Campaign';
+import CampaignFile from '../models/CampaignFile';
 
 class ChatHandler {
 	async fetch(socket, chatLimit){
@@ -36,6 +38,16 @@ class ChatHandler {
 					}
 				}
 			}
+			const keys = Object.keys(channels);
+			for(var key of keys){
+				var names = [];
+				for(var id of JSON.parse(key)){
+					var user = await User.findByPk(id);
+					names.push(user.name);
+				}
+				channels[names] = channels[key];
+				delete channels[key];
+			}
 			socket.emit('history', channels);
 		}
 		else
@@ -51,6 +63,26 @@ class ChatHandler {
 			message: message,
 			channel: JSON.stringify(channel)
 		});
+	}
+
+	async campaign(campaignid){
+		var camp = await Campaign.findByPk(campaignid);
+		if(camp){
+			var img = await CampaignFile.findOne({
+				where: {
+					proprietary: campaignid
+				}
+			});
+			socket.emit('campaign', {
+				name: camp.name,
+				image: img
+			});
+		} else{
+			socket.emit('campaign', {
+				name: null,
+				image: null
+			})
+		}
 	}
 
 	async chatServer(){
@@ -73,6 +105,19 @@ class ChatHandler {
 				})
 			});
 
+			socket.on('campaign', (data) => {
+				Campaign.findOne({
+					where: {
+						creator: userid
+					}
+				}).then(camp => this.campaign(camp.id));
+				
+			})
+
+			socket.on('create', (data) => {
+				this.campaign(data.campaignid);
+			});
+
 			socket.on('message', (data) => {
 				const fail = false;
 				for(var receiver of data.receiver){
@@ -82,7 +127,8 @@ class ChatHandler {
 							if(socketList.hasOwnProperty(receiver)){
 								socketList[receiver].emit('message', {
 									userid: socket.userid,
-									message: data.message
+									message: data.message,
+									name: user.name
 								});
 							}
 						} else {
