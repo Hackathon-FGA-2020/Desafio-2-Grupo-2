@@ -13,9 +13,10 @@ import Chat from './pages/Chat';
 import ChatDetails from './pages/ChatDetails';
 import ChatInfo from './pages/ChatInfo';
 import ChooseUserType from './pages/ChooseUserType';
+import CreateCampaign from './pages/CreateCampaign';
 import Delivery from './pages/Delivery';
 import EditCampaign from './pages/EditCampaign';
-import HomePage from './pages/HomePage';
+// import HomePage from './pages/HomePage';
 import MyCampaigns from './pages/MyCampaigns';
 import Profile from './pages/Profile';
 import Sign from './pages/Sign';
@@ -61,12 +62,21 @@ function ChatScreens() {
 }
 
 function navigationScreens() {
+  const { user_type: userType } = useSelector((state) => state.user.profile);
   return (
     <Drawer.Navigator initialRouteName="Profile">
-      <Drawer.Screen name="Home" component={HomePage} />
+      {/* <Drawer.Screen name="Home" component={HomePage} /> */}
       <Drawer.Screen name="Profile" component={Profile} />
-      <Drawer.Screen name="MyCampaigns" component={MyCampaigns} />
-      <Stack.Screen name="Delivery" component={Delivery} />
+      {userType === 'entity' && (
+        <>
+          <Drawer.Screen name="MyCampaigns" component={MyCampaigns} />
+          <Drawer.Screen name="EditCampaign" component={EditCampaign} />
+          <Drawer.Screen name="CreateCampaign" component={CreateCampaign} />
+        </>
+      )}
+      {userType === 'delivery' && (
+        <Stack.Screen name="Delivery" component={Delivery} />
+      )}
       <Drawer.Screen name="About" component={About} />
     </Drawer.Navigator>
   );

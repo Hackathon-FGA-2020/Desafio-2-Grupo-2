@@ -14,10 +14,11 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "barStyle": "light-content",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#448fb3"
     },
     "androidStatusBar": {
-      "barStyle": "light-content"
+      "barStyle": "light-content",
+      "backgroundColor": "#448fb3"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
