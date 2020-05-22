@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import * as Yup from 'yup';
 import authConfig from '../../config/auth';
 import User from '../models/User';
+import Avatar from '../models/Avatar';
 
 class SessionController {
   async store(req, res) {
@@ -26,7 +27,8 @@ class SessionController {
       return res.status(401).json({ error: 'Incorrect password' });
     }
 
-    const { id, name, user_type } = user;
+    const { id, name, user_type, avatar_id } = user;
+    const avatar = await Avatar.findByPk(avatar_id);
 
     return res.json({
       user: {
@@ -34,6 +36,7 @@ class SessionController {
         name,
         email,
         user_type,
+        avatar,
       },
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,

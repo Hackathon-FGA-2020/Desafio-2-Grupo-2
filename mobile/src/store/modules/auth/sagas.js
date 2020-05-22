@@ -19,7 +19,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(user, token));
-    navigate('Profile');
+    navigate('navigationScreens', { screen: 'Profile' });
   } catch (err) {
     Alert.alert('Erro!', 'Erro de autenticação, verifique seus dados');
 
