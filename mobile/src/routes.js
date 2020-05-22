@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import BottomTab from './components/BottomTab';
 import Header from './components/Header';
@@ -11,15 +11,16 @@ import CampaignDetails from './pages/CampaignDetails';
 import Campaigns from './pages/Campaigns';
 import Chat from './pages/Chat';
 import ChatDetails from './pages/ChatDetails';
+import ChatInfo from './pages/ChatInfo';
 import ChooseUserType from './pages/ChooseUserType';
 import Delivery from './pages/Delivery';
 import EditCampaign from './pages/EditCampaign';
+import HomePage from './pages/HomePage';
+import MyCampaigns from './pages/MyCampaigns';
 import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import MyCampaigns from './pages/MyCampaigns';
-import HomePage from './pages/HomePage';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,11 +46,12 @@ function CampaignScreens() {
 function ChatScreens() {
   return (
     <Stack.Navigator
-      initialRouteName="Chat"
+      initialRouteName="ChatDetails"
       screenOptions={{
         header: () => <Header initialRoute="Chat" title="Mensagens" />,
       }}>
       <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="ChatInfo" component={ChatInfo} />
       <Stack.Screen name="ChatDetails" component={ChatDetails} />
     </Stack.Navigator>
   );
@@ -77,7 +79,10 @@ function ProfileScreens() {
           backgroundColor: '#eee',
         },
         header: () => (
-          <Header title="" initialRoute={!signed ? 'Sign' : 'navigationScreens'} />
+          <Header
+            title=""
+            initialRoute={!signed ? 'Sign' : 'navigationScreens'}
+          />
         ),
       }}>
       {!signed ? (

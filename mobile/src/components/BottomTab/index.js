@@ -10,40 +10,53 @@ import { Wrapper, Container, MainButton, SideButton } from './styles';
 export default function BottomTab({ navigation, ...rest }) {
   const { navigate } = navigation;
   const { state } = rest;
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  // const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const initialRouteName = state.routeNames.find(
     (name, index) => index === state.index
   );
+  const screen = state.routes.find((route) => route.name === initialRouteName);
+  const screenName = screen.state?.routes[screen.state.index]?.name;
   const [route, setRoute] = useState(initialRouteName);
-  console.tron.log(initialRouteName);
   function navigateTo(routeFather, routeName) {
     navigate(routeFather, { screen: routeName });
     setRoute(routeFather);
   }
 
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true); // or some other action
-      }
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false); // or some other action
-      }
-    );
+  // useEffect(() => {
+  //   const keyboardDidShowListener = Keyboard.addListener(
+  //     'keyboardDidShow',
+  //     () => {
+  //       setKeyboardVisible(true); // or some other action
+  //     }
+  //   );
+  //   const keyboardDidHideListener = Keyboard.addListener(
+  //     'keyboardDidHide',
+  //     () => {
+  //       setKeyboardVisible(false); // or some other action
+  //     }
+  //   );
 
-    return () => {
-      keyboardDidHideListener.remove();
-      keyboardDidShowListener.remove();
-    };
-  }, []);
+  //   return () => {
+  //     keyboardDidHideListener.remove();
+  //     keyboardDidShowListener.remove();
+  //   };
+  // }, []);
+  console.tron.log(screenName);
+
+  function isVisible() {
+    if (
+      screenName === 'ChatDetails' ||
+      screenName === 'SignUp' ||
+      screenName === 'SignIn'
+    ) {
+      return true;
+    }
+    return false;
+  }
 
   return (
-    <Wrapper isKeyboardVisible={isKeyboardVisible} isChatDetails={state}>
+    <Wrapper isVisible={isVisible()}>
       <Container>
         <SideButton onPress={() => navigateTo('User')}>
           <MaterialCommunityIcons
@@ -61,7 +74,7 @@ export default function BottomTab({ navigation, ...rest }) {
             }
           />
         </MainButton>
-        <SideButton onPress={() => navigateTo('Chat')}>
+        <SideButton onPress={() => navigateTo('Chat', 'Chat')}>
           <Ionicons
             name="ios-chatbubbles"
             size={28}
