@@ -14,6 +14,7 @@ export default class Chat extends Model {
 					},
 				},
 				receiverid: Sequelize.STRING,
+				channel: Sequelize.STRING
 			},
 			{ sequelize, }
 		);
