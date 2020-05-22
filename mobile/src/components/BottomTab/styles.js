@@ -1,8 +1,7 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
 
 const screenHeight = Math.round(Dimensions.get('screen').height);
 
@@ -13,7 +12,8 @@ export const Wrapper = styled(SafeAreaView)`
   width: 100%;
   margin: 0 auto 10px;
   background: transparent;
-  opacity: ${(props) => (props.isKeyboardVisible ? '0' : '1')};
+  opacity: ${(props) =>
+    props.isKeyboardVisible || props.isChatDetails ? '0' : '1'};
 `;
 
 export const Container = styled.View`

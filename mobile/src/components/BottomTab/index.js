@@ -16,7 +16,7 @@ export default function BottomTab({ navigation, ...rest }) {
     (name, index) => index === state.index
   );
   const [route, setRoute] = useState(initialRouteName);
-
+  console.tron.log(initialRouteName);
   function navigateTo(routeFather, routeName) {
     navigate(routeFather, { screen: routeName });
     setRoute(routeFather);
@@ -43,7 +43,7 @@ export default function BottomTab({ navigation, ...rest }) {
   }, []);
 
   return (
-    <Wrapper isKeyboardVisible={isKeyboardVisible}>
+    <Wrapper isKeyboardVisible={isKeyboardVisible} isChatDetails={state}>
       <Container>
         <SideButton onPress={() => navigateTo('User')}>
           <MaterialCommunityIcons

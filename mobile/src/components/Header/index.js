@@ -45,7 +45,7 @@ export default function Header({ title, initialRoute }) {
       </>
     );
   }
-  console.tron.log(route)
+  // console.tron.log(route)
   function HomeHeader() {
     return (
       <Container>
