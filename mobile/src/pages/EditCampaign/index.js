@@ -20,8 +20,8 @@ import {
   Title,
   Image,
 } from '~/pages/_layouts/campaignsInputs/styles';
-import { createCampaignRequest, updateCampaignRequest } from '~/store/modules/campaign/actions';
 import api from '~/services/api';
+import { updateCampaignRequest } from '~/store/modules/campaign/actions';
 
 export default function CreateCampaign() {
   const formRef = useRef(null);
@@ -39,7 +39,7 @@ export default function CreateCampaign() {
       const tags = allTags.join(', ');
       if (!file) {
         setPreview(image);
-      };
+      }
       formRef.current.setData({ name, description, tags });
     }
 
@@ -134,9 +134,11 @@ export default function CreateCampaign() {
             <UploadAvatarText>Enviar</UploadAvatarText>
           </UploadAvatarButton>
           {errorImage && <ErrorText>{errorImage.message}</ErrorText>}
-          {file ?
+          {file ? (
             <Image source={{ uri: file.uri }} />
-            : <Image source={{ uri: preview.url }} />}
+          ) : (
+              <Image source={{ uri: preview.url }} />
+            )}
           <CreateButton onPress={() => formRef.current.submitForm()}>
             <CreateButtonText>Criar</CreateButtonText>
           </CreateButton>
