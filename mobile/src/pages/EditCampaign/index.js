@@ -23,7 +23,7 @@ import {
 import api from '~/services/api';
 import { updateCampaignRequest } from '~/store/modules/campaign/actions';
 
-export default function CreateCampaign() {
+export default function EditCampaign() {
   const formRef = useRef(null);
 
   const dispatch = useDispatch();

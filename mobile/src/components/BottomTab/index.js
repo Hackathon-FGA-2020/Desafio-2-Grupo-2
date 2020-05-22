@@ -42,13 +42,15 @@ export default function BottomTab({ navigation, ...rest }) {
   //     keyboardDidShowListener.remove();
   //   };
   // }, []);
-  console.tron.log(screenName);
+  // console.tron.log(screenName);
 
   function isVisible() {
     if (
       screenName === 'ChatDetails' ||
       screenName === 'SignUp' ||
-      screenName === 'SignIn'
+      screenName === 'SignIn' ||
+      screenName === 'About' ||
+      screenName === 'CampaignDetails'
     ) {
       return true;
     }
