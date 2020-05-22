@@ -37,7 +37,6 @@ function CampaignScreens() {
       }}>
       <Stack.Screen name="Campaigns" component={Campaigns} />
       <Stack.Screen name="CampaignDetails" component={CampaignDetails} />
-      <Stack.Screen name="Delivery" component={Delivery} />
       <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
@@ -60,8 +59,9 @@ function navigationScreens() {
   return (
     <Drawer.Navigator initialRouteName="Profile">
       <Drawer.Screen name="Home" component={HomePage} />
-      <Drawer.Screen name="Meu perfil" component={Profile} />
-      <Drawer.Screen name="Minhas campanhas" component={Campaigns} />
+      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="MyCampaigns" component={MyCampaigns} />
+      <Stack.Screen name="Delivery" component={Delivery} />
       <Drawer.Screen name="About" component={About} />
     </Drawer.Navigator>
   );
@@ -71,13 +71,13 @@ function ProfileScreens() {
   const signed = useSelector((state) => state.auth.signed);
   return (
     <Stack.Navigator
-      initialRouteName={!signed ? 'Sign' : 'Profile'}
+      initialRouteName={!signed ? 'Sign' : 'navigationScreens'}
       screenOptions={{
         cardStyle: {
           backgroundColor: '#eee',
         },
         header: () => (
-          <Header title="" initialRoute={!signed ? 'Sign' : 'Profile'} />
+          <Header title="" initialRoute={!signed ? 'Sign' : 'navigationScreens'} />
         ),
       }}>
       {!signed ? (
@@ -88,8 +88,8 @@ function ProfileScreens() {
           <Stack.Screen name="SignUp" component={SignUp} />
         </>
       ) : (
-        <Stack.Screen name="navigationScreens" component={navigationScreens} />
-      )}
+          <Stack.Screen name="navigationScreens" component={navigationScreens} />
+        )}
     </Stack.Navigator>
   );
 }

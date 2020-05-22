@@ -40,28 +40,32 @@ export default function Header({ title, initialRoute }) {
         {route.name === 'Sign' || route.name === 'ChooseUserType' ? (
           <WrapperSign>{children}</WrapperSign>
         ) : (
-          <Wrapper>{children}</Wrapper>
-        )}
+            <Wrapper>{children}</Wrapper>
+          )}
       </>
     );
   }
-
+  console.tron.log(route)
   function HomeHeader() {
     return (
       <Container>
+        {route.name === 'navigationScreens' && (
+          <MenuButton onPress={toggleMenu}>
+            <Ionicons name="ios-menu" size={30} color="#fff" />
+          </MenuButton>)}
         {title ? (
           <Title>{title}</Title>
         ) : (
-          <>
-            {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
-              <ButtonLogo onPress={navigateToAbout}>
-                <Logo />
-              </ButtonLogo>
-            ) : (
-              <Logo />
-            )}
-          </>
-        )}
+            <>
+              {route.name !== 'Sign' && route.name !== 'ChooseUserType' ? (
+                <ButtonLogo onPress={navigateToAbout}>
+                  <Logo />
+                </ButtonLogo>
+              ) : (
+                  <Logo />
+                )}
+            </>
+          )}
       </Container>
     );
   }
@@ -72,10 +76,10 @@ export default function Header({ title, initialRoute }) {
         <ButtonGoBack onPress={navigateToBack}>
           <Ionicons name="ios-arrow-back" size={30} color="#448FB3" />
         </ButtonGoBack>
-        {title ? <Title>{title}</Title> : <Logo />}
-        <MenuButton onPress={toggleMenu}>
-          <Ionicons name="ios-menu" size={30} color="#fff" />
-        </MenuButton>
+        {title ? <Title>{title}</Title> :
+          <ButtonLogo onPress={navigateToAbout}>
+            <Logo />
+          </ButtonLogo>}
       </Container>
     );
   }

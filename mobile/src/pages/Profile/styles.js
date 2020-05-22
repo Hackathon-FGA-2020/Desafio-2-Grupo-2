@@ -18,10 +18,10 @@ export const Container = styled.View`
 
 export const ProfileContainer = styled.View`
   width: 90%;
-  padding: 70px;
+  padding: 70px 70px 30px;
   margin-top: 100px;
   border-radius: 20px;
-  height: 50%;
+  min-height: 50%;
   background: rgba(68, 143, 179, 0.15);
 `;
 export const Button = styled.TouchableOpacity`
