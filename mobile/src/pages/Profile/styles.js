@@ -1,5 +1,7 @@
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
+import { darken, ligthen, lighten } from 'polished';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
@@ -15,9 +17,9 @@ export const Container = styled.View`
 `;
 
 export const ProfileContainer = styled.View`
-  width: 90%
+  width: 90%;
   padding: 70px;
-  margin-top: 200px;
+  margin-top: 100px;
   border-radius: 20px;
   height: 50%;
   background: rgba(68, 143, 179, 0.15);
@@ -55,7 +57,6 @@ export const ProfileDescription = styled.Text`
 
 export const ProfileButton = styled.TouchableOpacity`
   padding: 8px 10px 6px;
-  background: #fff;
   border-radius: 26px;
   align-items: center;
   justify-content: center;
@@ -72,22 +73,22 @@ export const ProfileButtonText = styled.Text`
   font-family: ChampagneBold;
 `;
 export const Logo = styled.Image`
+  margin: 0 auto;
   width: 160px;
   height: 160px;
   border-radius: 80px;
-  background: #fff;
-  border-width: 8px;
-  border-color: rgba(68, 143, 179, 0.15);
+  border-color: #fff;
+  border-width: 2px;
   position: absolute;
-  top: 120px;
-  left: 130px;
+  top: 20px;
   z-index: 1;
 `;
 export const ButtonIcon = styled.TouchableOpacity`
-  margin: 30px auto 20px;
-  padding: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  margin: 20px 0px;
   background: #448fb3;
-  border-radius: 60px;
   align-items: center;
   justify-content: center;
 `;
@@ -98,12 +99,7 @@ export const ProfileAmount = styled.Text`
   font-family: Champagne;
   text-align: center;
 `;
-export const Donation = styled.Text`
-  font-size: 20px;
-  letter-spacing: 0.5px;
-  font-family: Champagne;
-  text-align: center;
-`;
+
 export const InsertImage = styled.TouchableOpacity`
   margin: 30px auto 20px;
   padding: 20px;
@@ -111,4 +107,39 @@ export const InsertImage = styled.TouchableOpacity`
   border-radius: 60px;
   align-items: center;
   justify-content: center;
+`;
+
+export const DonationsAmountContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Donation = styled.View`
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+`;
+
+export const DonationsContainer = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DeliveryButton = styled(RectButton)`
+  margin: 0 auto;
+  height: 60px;
+  width: 60%;
+  padding: 4px 10px;
+  background: ${darken(0.1, '#d4da49')};
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonText = styled.Text`
+  font-family: ChampagneBold;
+  font-size: 24px;
+  color: #fff;
 `;

@@ -1,6 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  useNavigation,
+  useRoute,
+  DrawerActions,
+} from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -11,6 +15,7 @@ import {
   ButtonLogo,
   Logo,
   Title,
+  MenuButton,
 } from './styles';
 
 export default function Header({ title, initialRoute }) {
@@ -23,6 +28,10 @@ export default function Header({ title, initialRoute }) {
   }
   function navigateToAbout() {
     navigation.navigate('About');
+  }
+
+  function toggleMenu() {
+    navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
   function Container({ children }) {
@@ -60,9 +69,9 @@ export default function Header({ title, initialRoute }) {
   function OthersHeader() {
     return (
       <Container>
-        <ButtonGoBack onPress={navigateToBack}>
-          <Ionicons name="ios-arrow-back" size={30} color="#448FB3" />
-        </ButtonGoBack>
+        <MenuButton onPress={toggleMenu}>
+          <Ionicons name="ios-menu" size={30} color="#fff" />
+        </MenuButton>
         {title ? <Title>{title}</Title> : <Logo />}
         <ButtonGoBack />
       </Container>

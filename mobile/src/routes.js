@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import BottomTab from './components/BottomTab';
 import Header from './components/Header';
@@ -17,10 +18,10 @@ import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Profiles from './pages/Profile';
+import HomePage from './pages/HomePage';
 
+const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-
 const Stack = createStackNavigator();
 
 function CampaignScreens() {
@@ -54,6 +55,17 @@ function ChatScreens() {
   );
 }
 
+function navigationScreens() {
+  return (
+    <Drawer.Navigator initialRouteName="Profile">
+      <Drawer.Screen name="Home" component={HomePage} />
+      <Drawer.Screen name="Meu perfil" component={Profile} />
+      <Drawer.Screen name="Minhas campanhas" component={Campaigns} />
+      <Drawer.Screen name="About" component={About} />
+    </Drawer.Navigator>
+  );
+}
+
 function ProfileScreens() {
   const signed = useSelector((state) => state.auth.signed);
   return (
@@ -75,8 +87,8 @@ function ProfileScreens() {
           <Stack.Screen name="SignUp" component={SignUp} />
         </>
       ) : (
-          <Stack.Screen name="Profile" component={Profile} />
-        )}
+        <Stack.Screen name="navigationScreens" component={navigationScreens} />
+      )}
     </Stack.Navigator>
   );
 }

@@ -58,3 +58,12 @@ export const Title = styled.Text`
   margin: 0 auto;
   text-align: center;
 `;
+
+export const MenuButton = styled(RectButton)`
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background: #448fb3;
+  justify-content: center;
+  align-items: center;
+`;
