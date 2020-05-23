@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { EvilIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { formatDate } from '~/util/formatDate.js';
 import {
   Container,
   CampaignsList,
@@ -20,32 +20,32 @@ import {
 } from './styles';
 import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
+import api from '~/services/api';
 
 export default function Campaigns() {
   const navigation = useNavigation();
-  const campaign = {
-    name: 'Campanha do Agasalho',
-    entity: 'Assembleia Cristo é o Senhor',
-    location: 'Samambaia - DF',
-    tags: ['Cobertores', 'Agasalhos', 'Meias', 'Calçados', 'Calças', 'Moletons', 'Camisetas'],
-    file: image,
-    date: 'ontem',
-  };
-  const campaigns = [
-    {
-      id: 1,
-      ...campaign,
-    },
-    {
-      id: 2,
-      ...campaign,
-    },
-  ];
+  const [campaigns, setCampaigns] = useState([]);
+
+  useEffect(() => {
+    async function loadCampaigns() {
+      const response = await api.get('campaigns');
+
+      const data = response.data.map(campaign => ({
+        ...campaign,
+        date: formatDate(campaign.updatedAt)
+      }))
+
+      setCampaigns(data);
+    }
+    loadCampaigns();
+  }, [])
+
+
 
   function navigateToCampaign(id) {
     navigation.navigate('CampaignDetails', { id });
   }
-
+  console.tron.log(campaigns)
   return (
     <Container>
       <CampaignsList
@@ -57,9 +57,9 @@ export default function Campaigns() {
             <CampaignItem>
               <CampaignContainerButton
                 onPress={() => navigateToCampaign(item.id)}>
-                <CampaignImage source={item.file} />
+                <CampaignImage source={{ uri: item.file.url }} />
                 <CampaignTitle>{item.name}</CampaignTitle>
-                <CampaignEntity>{item.entity}</CampaignEntity>
+                <CampaignEntity>{item.campaignCreator.name}</CampaignEntity>
                 <CampaignTagsContainer>
                   {item.tags.map((tag) => (
                     <CampaignTags key={tag}>{tag}</CampaignTags>

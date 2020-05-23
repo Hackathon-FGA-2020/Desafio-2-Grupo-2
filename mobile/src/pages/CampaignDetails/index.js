@@ -49,7 +49,6 @@ function CampaignDetails() {
           </Header>
           <CampaignDate>{campaign.date}, {campaign.location}</CampaignDate>
           <CampaignDescription>{campaign.description}</CampaignDescription>
-          <Footer />
         </DetailsContainer>
       </CampaignContainer>
       <CampaignButton>

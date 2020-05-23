@@ -32,9 +32,9 @@ class CampaignController {
     });
 
     const CampaignsWithFile = campaigns.map(
-      ({ id, name, description, tags, updateAt, campaignCreator }) => {
+      ({ id, name, description, tags, updatedAt, campaignCreator }) => {
         const file = files.find((file) => file.proprietary === id);
-        return { id, name, description, tags, updateAt, campaignCreator, file };
+        return { id, name, description, tags, updatedAt, campaignCreator, file };
       }
     );
 
@@ -91,7 +91,7 @@ class CampaignController {
       name,
       description,
       tags,
-      updateAt,
+      updatedAt,
       campaignCreator,
     } = await Campaign.findByPk(campaign_id, {
       attributes: ['id', 'name', 'description', 'tags', 'updatedAt'],
@@ -119,7 +119,7 @@ class CampaignController {
       name,
       description,
       tags,
-      updateAt,
+      updatedAt,
       campaignCreator,
       file,
     };

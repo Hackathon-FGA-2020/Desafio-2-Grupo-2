@@ -20,6 +20,9 @@ routes.post(
 
 routes.post('/sessions', SessionController.store);
 
+routes.get('/campaigns', CampaignController.index);
+routes.get('/campaigns/:id', CampaignController.show);
+
 routes.use(authMiddleware);
 
 routes.get('/solicitations', SolicitationController.index);
@@ -27,8 +30,6 @@ routes.delete('/solicitations/:id', SolicitationController.delete);
 routes.put('/users', UserController.update);
 
 routes.post('/campaigns', upload.single('file'), CampaignController.store);
-routes.get('/campaigns', CampaignController.index);
-routes.get('/campaigns/:id', CampaignController.show);
 routes.delete('/campaigns/:id', CampaignController.delete);
 
 routes.put('/campaigns/:id', upload.single('file'), CampaignController.update);
