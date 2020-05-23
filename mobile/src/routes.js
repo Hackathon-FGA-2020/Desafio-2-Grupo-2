@@ -20,6 +20,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import MyCampaigns from './pages/MyCampaigns';
 import HomePage from './pages/HomePage';
+import Profiles from './pages/Profile';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -77,7 +78,10 @@ function ProfileScreens() {
           backgroundColor: '#eee',
         },
         header: () => (
-          <Header title="" initialRoute={!signed ? 'Sign' : 'navigationScreens'} />
+          <Header
+            title=""
+            initialRoute={!signed ? 'Sign' : 'navigationScreens'}
+          />
         ),
       }}>
       {!signed ? (
@@ -88,8 +92,8 @@ function ProfileScreens() {
           <Stack.Screen name="SignUp" component={SignUp} />
         </>
       ) : (
-          <Stack.Screen name="navigationScreens" component={navigationScreens} />
-        )}
+        <Stack.Screen name="navigationScreens" component={navigationScreens} />
+      )}
     </Stack.Navigator>
   );
 }

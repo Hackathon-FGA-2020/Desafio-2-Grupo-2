@@ -24,19 +24,15 @@ import {
   DeliveryButton,
   ButtonText,
 } from './styles';
+import api from '~/services/api';
+import { useSelector } from 'react-redux';
 
 export default function Profiles() {
-  const profile = {
-    name: 'Israel Carlos',
-    email: 'israelcarlos01@gmail.com',
-    amountDonation: '3',
-    amountDelivery: '5',
-    file: image,
-    description: 'Torne-se um doador da agricultura familiar',
-  };
+  const { profile } = useSelector((state) => state.user);
+
   return (
     <Container>
-      <Logo source={image} />
+      <Logo source={profile.path} />
       <ProfileContainer>
         <ProfileTitle>{profile.name}</ProfileTitle>
         <ProfileEmail>{profile.email}</ProfileEmail>
@@ -45,7 +41,9 @@ export default function Profiles() {
             <ButtonIcon onPress={() => {}}>
               <Ionicons name="ios-heart" size={36} color="#fff" />
             </ButtonIcon>
-            <ProfileAmount>{profile.amountDonation}</ProfileAmount>
+            <ProfileAmount>
+              <Text>3</Text>
+            </ProfileAmount>
             <Text>Doações</Text>
           </Donation>
           <Donation>
@@ -56,12 +54,13 @@ export default function Profiles() {
                 color="#fff"
               />
             </ButtonIcon>
-            <ProfileAmount>{profile.amountDonation}</ProfileAmount>
+            <ProfileAmount>
+              <Text>3</Text>
+            </ProfileAmount>
             <Text>Entregas</Text>
           </Donation>
         </DonationsContainer>
       </ProfileContainer>
-      <ProfileDescription>{profile.description}</ProfileDescription>
       <DeliveryButton>
         <ButtonText>Buscar entregas</ButtonText>
       </DeliveryButton>
