@@ -4,6 +4,8 @@ import image from '~/assets/israel.png';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Text } from 'react-native';
 
+import { useDispatch } from 'react-redux';
+
 import {
   ProfileContainer,
   Container,
@@ -25,7 +27,11 @@ import {
   ButtonText,
 } from './styles';
 
+import { signOut } from '~/store/modules/auth/actions';
+
 export default function Profiles() {
+  const dispatch = useDispatch();
+
   const profile = {
     name: 'Israel Carlos',
     email: 'israelcarlos01@gmail.com',
@@ -34,6 +40,10 @@ export default function Profiles() {
     file: image,
     description: 'Torne-se um doador da agricultura familiar',
   };
+
+  function logout() {
+    dispatch(signOut());
+  }
   return (
     <Container>
       <Logo source={image} />
@@ -62,8 +72,11 @@ export default function Profiles() {
         </DonationsContainer>
       </ProfileContainer>
       <ProfileDescription>{profile.description}</ProfileDescription>
-      <DeliveryButton>
+      {/* <DeliveryButton>
         <ButtonText>Buscar entregas</ButtonText>
+      </DeliveryButton> */}
+      <DeliveryButton onPress={logout}>
+        <ButtonText>Sair</ButtonText>
       </DeliveryButton>
     </Container>
   );

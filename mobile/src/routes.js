@@ -16,15 +16,12 @@ import ChooseUserType from './pages/ChooseUserType';
 import CreateCampaign from './pages/CreateCampaign';
 import Delivery from './pages/Delivery';
 import EditCampaign from './pages/EditCampaign';
-// import HomePage from './pages/HomePage';
 import MyCampaigns from './pages/MyCampaigns';
 import Profile from './pages/Profile';
 import Sign from './pages/Sign';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import MyCampaigns from './pages/MyCampaigns';
 import HomePage from './pages/HomePage';
-import ChatInfo from './pages/ChatInfo';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -106,8 +103,8 @@ function ProfileScreens() {
           <Stack.Screen name="SignUp" component={SignUp} />
         </>
       ) : (
-          <Stack.Screen name="navigationScreens" component={navigationScreens} />
-        )}
+        <Stack.Screen name="navigationScreens" component={navigationScreens} />
+      )}
     </Stack.Navigator>
   );
 }

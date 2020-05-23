@@ -11,7 +11,7 @@ export const Container = styled.View`
 export const SubContainer = styled.View``;
 
 export const Title = styled.Text`
-  font-family: Champagne;
+  font-family: ChampagneBold;
   font-size: 26px;
   max-width: 80%;
   text-align: center;

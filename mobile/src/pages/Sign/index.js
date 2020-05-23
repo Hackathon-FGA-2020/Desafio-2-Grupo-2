@@ -9,9 +9,7 @@ import {
   ButtonText,
 } from '~/pages/_layouts/Sign/styles';
 
-import {
-  BackgroundImage,
-} from './styles';
+import { BackgroundImage } from './styles';
 
 export default function SignIn() {
   const { navigate } = useNavigation();
@@ -25,8 +23,10 @@ export default function SignIn() {
       <BackgroundImage />
       <Container>
         <SubContainer>
-          <Title>Parece que você não está conectado</Title>
-          <Title>O que deseja?</Title>
+          <Title style={{ color: '#fff' }}>
+            Parece que você não está conectado
+          </Title>
+          <Title style={{ color: '#fff' }}>O que deseja?</Title>
         </SubContainer>
         <SubContainer>
           <Button primary onPress={() => navigateTo('ChooseUserType')}>

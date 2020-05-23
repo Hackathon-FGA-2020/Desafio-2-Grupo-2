@@ -1,6 +1,7 @@
 import { lighten, darken } from 'polished';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
+import logo from '~/assets/Logotipo/Logo.png';
 
 const width = Math.round(Dimensions.get('window').width);
 
@@ -36,7 +37,10 @@ export const Title = styled.Text`
   font-family: Champagne;
 `;
 
-export const Logo = styled.Image`
+export const Logo = styled.Image.attrs({
+  source: logo,
+  resizeMode: 'contain',
+})`
   width: 80px;
   height: 80px;
   border-radius: 40px;

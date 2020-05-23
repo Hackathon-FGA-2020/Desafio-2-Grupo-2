@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { View } from 'react-native';
 
 import {
   Container,
@@ -59,9 +60,13 @@ export default function Campaign() {
                 <ChatName numberOfLines={1}>{item.name}</ChatName>
                 <CampaignTagsContainer>
                   {item.tags.map((tag, index) => (
-                    <>
-                      {index < 2 && <CampaignTags key={tag}>{tag}</CampaignTags>}
-                    </>
+                    <View key={index}>
+                      <>
+                        {index < 2 && (
+                          <CampaignTags key={tag}>{tag}</CampaignTags>
+                        )}
+                      </>
+                    </View>
                   ))}
                 </CampaignTagsContainer>
               </ChatDetails>

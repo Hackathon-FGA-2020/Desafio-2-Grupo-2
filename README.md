@@ -80,4 +80,4 @@ yarn start
 
 ## Licença
 
-Esse projeto está sob licença GNU que pode ser encontrada no seguinte <a href="https://github.com/Hackathon-FGA-2020/Desafio-1-Grupo-10/blob/master/LICENSE">aqui</a>.
+Esse projeto está sob licença GNU que pode ser encontrada <a href="https://github.com/Hackathon-FGA-2020/Desafio-2-Grupo-2/blob/master/LICENSE">aqui</a>.

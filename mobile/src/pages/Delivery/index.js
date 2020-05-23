@@ -32,7 +32,7 @@ import {
   CampaignEntity,
   CampaignDelivery,
 } from './styles';
-import avatar from '~/assets/avatar.png';
+import avatar from '~/assets/caridade.jpg';
 import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
 
@@ -119,7 +119,9 @@ export default function Campaigns() {
                 ))}
               </CampaignTagsContainer>
               <CampaignMore>
-                <CampaignDate>{item.date}, {item.location}</CampaignDate>
+                <CampaignDate>
+                  {item.date}, {item.location}
+                </CampaignDate>
                 <CampaignButton onPress={toggleModal}>
                   <ButtonText>Quero ajudar</ButtonText>
                   <EvilIcons name="heart" size={36} color="#121212" />
