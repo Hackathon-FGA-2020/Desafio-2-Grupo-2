@@ -147,3 +147,6 @@ com tudo que aprendemos ao longo dessa semana.
 ## Licença
 
 Esse projeto está sob licença GNU que pode ser encontrada <a href="https://github.com/Hackathon-FGA-2020/Desafio-2-Grupo-2/blob/master/LICENSE">aqui</a>.
+
+## Link da apresentação (youtube)
+https://www.youtube.com/watch?v=kTShqqh1QK8&feature=youtu.be
