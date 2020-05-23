@@ -19,7 +19,8 @@ import image from '~/assets/doar.png';
 import Footer from '~/components/Footer';
 
 const ChatDetails = () => {
-  const messages = ['ola', 'olaaa', 'tudo bem', 'td, gostaria de ajudar'];
+  const messages = ['Olá!', 'Tudo bem?'];
+  const messages2 = ['Olá.', 'Tudo?'];
 
   return (
     <Container>
@@ -29,7 +30,6 @@ const ChatDetails = () => {
       </Campaign>
       <MessagesList
         vertical
-        inverted
         data={messages}
         keyExtractor={(item) => String(item)}
         renderItem={({ item }) => (

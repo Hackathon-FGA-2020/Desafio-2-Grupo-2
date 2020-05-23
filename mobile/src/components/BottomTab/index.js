@@ -10,7 +10,6 @@ import { Wrapper, Container, MainButton, SideButton } from './styles';
 export default function BottomTab({ navigation, ...rest }) {
   const { navigate } = navigation;
   const { state } = rest;
-  // const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const initialRouteName = state.routeNames.find(
     (name, index) => index === state.index
@@ -22,27 +21,6 @@ export default function BottomTab({ navigation, ...rest }) {
     navigate(routeFather, { screen: routeName });
     setRoute(routeFather);
   }
-
-  // useEffect(() => {
-  //   const keyboardDidShowListener = Keyboard.addListener(
-  //     'keyboardDidShow',
-  //     () => {
-  //       setKeyboardVisible(true); // or some other action
-  //     }
-  //   );
-  //   const keyboardDidHideListener = Keyboard.addListener(
-  //     'keyboardDidHide',
-  //     () => {
-  //       setKeyboardVisible(false); // or some other action
-  //     }
-  //   );
-
-  //   return () => {
-  //     keyboardDidHideListener.remove();
-  //     keyboardDidShowListener.remove();
-  //   };
-  // }, []);
-  // console.tron.log(screenName);
 
   function isVisible() {
     if (
@@ -58,7 +36,7 @@ export default function BottomTab({ navigation, ...rest }) {
   }
 
   return (
-    <Wrapper isKeyboardVisible={isKeyboardVisible}>
+    <Wrapper isVisible={isVisible()}>
       <Container>
         <SideButton onPress={() => navigateTo('User')}>
           <MaterialCommunityIcons

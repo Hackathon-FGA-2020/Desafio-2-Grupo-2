@@ -1,4 +1,4 @@
-import background from '~/assets/kids.png';
+import background from '~/assets/world.png';
 import styled from 'styled-components/native';
 
 export const BackgroundImage = styled.Image.attrs({

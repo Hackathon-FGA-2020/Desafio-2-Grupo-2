@@ -45,6 +45,7 @@ export const ButtonLogo = styled(RectButton)`
   margin: 0 auto;
   width: 114px;
   position: absolute;
+  top: 18px;
   left: ${width / 2 - 57}px;
 `;
 

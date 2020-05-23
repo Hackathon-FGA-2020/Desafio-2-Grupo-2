@@ -10,7 +10,7 @@ class User extends Model {
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
         user_type: Sequelize.STRING,
-        city: Sequelize.STRING,
+        // city: Sequelize.STRING,
       },
       {
         sequelize,
