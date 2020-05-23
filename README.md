@@ -51,7 +51,7 @@ familiar.
 
 ### Pré requisitos
 
-Para execuar o software localmente, são necessárias as seguintes ferramentas:
+Para executar o software localmente, são necessárias as seguintes ferramentas:
 
 <li>
 <a href="https://expo.io/tools#cli">expo</a>
