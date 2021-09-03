@@ -19,7 +19,7 @@
     "expo": "~37.0.3",
     "expo-font": "~8.1.0",
     "expo-image-picker": "~8.1.0",
-    "immer": "^6.0.5",
+    "immer": "^9.0.6",
     "polished": "^3.6.3",
     "prop-types": "^15.7.2",
     "react": "~16.9.0",
